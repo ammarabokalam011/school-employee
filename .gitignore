@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/packages
+/SchoolEmployee/Properties
+/SchoolEmployee/obj
+/SchoolEmployee/bin
