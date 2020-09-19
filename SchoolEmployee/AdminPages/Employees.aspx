@@ -17,7 +17,7 @@
                 <EditFormSettings Visible="False"/>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="FirstName" VisibleIndex="4"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="LastNmae" VisibleIndex="5"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="LastName" VisibleIndex="5"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="FatherName" VisibleIndex="6"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="MotherName" VisibleIndex="7"></dx:GridViewDataTextColumn>
             <dx:GridViewDataDateColumn FieldName="BirthDate" VisibleIndex="8"></dx:GridViewDataDateColumn>
@@ -29,13 +29,13 @@
 
         </Columns>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM Employee WHERE (ID = @ID)" SelectCommand="SELECT ID, FirstName, LastNmae, FatherName, MotherName, BirthDate, Role, Username, Password FROM Employee" UpdateCommand="UPDATE Employee SET FirstName = @FirstName, LastNmae = @LastNmae, FatherName = @FatherName, MotherName = @MotherName, BirthDate = @BirthDate, Username = @Username">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM Employee WHERE (ID = @ID)" SelectCommand="SELECT ID, FirstName, LastName, FatherName, MotherName, BirthDate, Role, Username, Password FROM Employee" UpdateCommand="UPDATE Employee SET FirstName = @FirstName, LastName = @LastName, FatherName = @FatherName, MotherName = @MotherName, BirthDate = @BirthDate, Username = @Username">
         <DeleteParameters>
             <asp:Parameter Name="ID"></asp:Parameter>
         </DeleteParameters>
         <UpdateParameters>
             <asp:Parameter Name="FirstName"></asp:Parameter>
-            <asp:Parameter Name="LastNmae"></asp:Parameter>
+            <asp:Parameter Name="LastName"></asp:Parameter>
             <asp:Parameter Name="FatherName"></asp:Parameter>
             <asp:Parameter Name="MotherName"></asp:Parameter>
             <asp:Parameter Name="BirthDate"></asp:Parameter>

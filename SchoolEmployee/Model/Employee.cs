@@ -22,7 +22,7 @@ namespace SchoolWeb.Model
     
         public System.Guid ID { get; set; }
         public string FirstName { get; set; }
-        public string LastNmae { get; set; }
+        public string LastName { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }
         public System.DateTime BirthDate { get; set; }

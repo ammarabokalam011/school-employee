@@ -36,13 +36,13 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastNmae" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FatherName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MotherName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeLog">
           <Key>
@@ -170,6 +170,8 @@
           <Property Name="ClassRoomId" Type="int" />
           <Property Name="BusRegister" Type="bit" />
           <Property Name="GradeId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentExam">
           <Key>
@@ -721,13 +723,13 @@
           </Key>
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastNmae" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Permission" Relationship="Self.EmployeePermission" FromRole="Employee" ToRole="Permission" />
           <NavigationProperty Name="EmployeeLog" Relationship="SchoolDBModel.FK_EmployeeLog_Employee" FromRole="Employee" ToRole="EmployeeLog" />
         </EntityType>
@@ -865,6 +867,8 @@
           <Property Name="GradeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Student" ToRole="Grade" />
           <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="Student" ToRole="ClassRoom" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="StudentExam">
           <Key>
@@ -1310,7 +1314,7 @@
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastNmae" ColumnName="LastNmae" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="MotherName" ColumnName="MotherName" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
@@ -1423,6 +1427,8 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="SchoolDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="GradeId" ColumnName="GradeId" />
                 <ScalarProperty Name="BusRegister" ColumnName="BusRegister" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

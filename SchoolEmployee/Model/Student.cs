@@ -30,6 +30,8 @@ namespace SchoolWeb.Model
         public Nullable<int> ClassRoomId { get; set; }
         public Nullable<bool> BusRegister { get; set; }
         public int GradeId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     
         public virtual ICollection<PaymentStudent> PaymentStudent { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }

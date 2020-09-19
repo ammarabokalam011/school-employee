@@ -21,7 +21,7 @@ namespace SchoolWeb.AdminPages
             Employee employee = new Employee()
             {
                 FirstName = e.NewValues[0].ToString(),
-                LastNmae = e.NewValues[1].ToString(),
+                LastName = e.NewValues[1].ToString(),
                 FatherName = e.NewValues[2].ToString(),
                 MotherName =e.NewValues[3].ToString(),
                 BirthDate= DateTime.Parse(e.NewValues[4].ToString()),
