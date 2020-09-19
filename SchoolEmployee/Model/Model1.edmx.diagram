@@ -27,7 +27,6 @@
         <AssociationConnector Association="SchoolDBModel.FK_ClassRoom_Grade" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK_Exam_ClassRoom" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK_Schedule_ClassRoom" ManuallyRouted="false" />
-        <AssociationConnector Association="SchoolDBModel.FK_Student_ClassRoom" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK_StudentExam_ClassRoom" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK_Exam_Subject" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.FK_StudentExam_Exam" ManuallyRouted="false" />
@@ -42,7 +41,12 @@
         <AssociationConnector Association="SchoolDBModel.EmployeePermission" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.SubjectGrade" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolDBModel.TeacherClassRoom" ManuallyRouted="false" />
-        <AssociationConnector Association="SchoolDBModel.TeacherSubject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Exam_Period" />
+        <AssociationConnector Association="SchoolDBModel.FK_Student_Grade" />
+        <AssociationConnector Association="SchoolDBModel.FK_Student_ClassRoom" />
+        <AssociationConnector Association="SchoolDBModel.TeacherSubject" />
+        <EntityTypeShape EntityType="SchoolDBModel.EmployeeLog" Width="1.5" PointX="3" PointY="13.5" />
+        <AssociationConnector Association="SchoolDBModel.FK_EmployeeLog_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

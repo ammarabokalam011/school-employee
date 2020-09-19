@@ -27,10 +27,13 @@ namespace SchoolWeb.Model
         public string FatherName { get; set; }
         public System.DateTime BirthDate { get; set; }
         public string Discount { get; set; }
-        public int ClassRoomId { get; set; }
+        public Nullable<int> ClassRoomId { get; set; }
+        public Nullable<bool> BusRegister { get; set; }
+        public int GradeId { get; set; }
     
-        public virtual ClassRoom ClassRoom { get; set; }
         public virtual ICollection<PaymentStudent> PaymentStudent { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }
+        public virtual Grade Grade { get; set; }
+        public virtual ClassRoom ClassRoom { get; set; }
     }
 }

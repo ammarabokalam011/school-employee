@@ -25,9 +25,11 @@ namespace SchoolWeb.Model
         public int SubjectId { get; set; }
         public int ClassRoomId { get; set; }
         public string Name { get; set; }
+        public Nullable<int> PeriodId { get; set; }
     
         public virtual ClassRoom ClassRoom { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }
+        public virtual Period Period { get; set; }
     }
 }

@@ -12,20 +12,14 @@ namespace SchoolWeb.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Period
+    public partial class EmployeeLog
     {
-        public Period()
-        {
-            this.Schedule = new HashSet<Schedule>();
-            this.Exam = new HashSet<Exam>();
-        }
-    
         public int ID { get; set; }
-        public byte Day { get; set; }
-        public System.TimeSpan StartTime { get; set; }
-        public System.TimeSpan EndTime { get; set; }
+        public System.Guid UserId { get; set; }
+        public string EventName { get; set; }
+        public string Details { get; set; }
+        public System.DateTime EventDate { get; set; }
     
-        public virtual ICollection<Schedule> Schedule { get; set; }
-        public virtual ICollection<Exam> Exam { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

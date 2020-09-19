@@ -23,6 +23,7 @@ namespace SchoolWeb.Model
         public int Amount { get; set; }
         public Nullable<System.DateTime> WarrningDate { get; set; }
         public Nullable<System.DateTime> LastDate { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<GradeFee> GradeFee { get; set; }
     }

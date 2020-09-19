@@ -44,6 +44,16 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="EmployeeLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Details" Type="varchar(max)" Nullable="false" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="EmployeePermission">
           <Key>
             <PropertyRef Name="PermissionId" />
@@ -62,6 +72,7 @@
           <Property Name="SubjectId" Type="int" Nullable="false" />
           <Property Name="ClassRoomId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="PeriodId" Type="int" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -71,6 +82,7 @@
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="WarrningDate" Type="date" />
           <Property Name="LastDate" Type="date" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -122,8 +134,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Day" Type="tinyint" Nullable="false" />
-          <Property Name="StartTime" Type="time" Precision="7" />
-          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
@@ -155,7 +167,9 @@
           <Property Name="FatherName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="Discount" Type="varchar" MaxLength="50" />
-          <Property Name="ClassRoomId" Type="int" Nullable="false" />
+          <Property Name="ClassRoomId" Type="int" />
+          <Property Name="BusRegister" Type="bit" />
+          <Property Name="GradeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentExam">
           <Key>
@@ -232,6 +246,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmployeeLog_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeeLog" Type="Self.EmployeeLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EmployeePermission_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="EmployeePermission" Type="Self.EmployeePermission" Multiplicity="*" />
@@ -265,6 +291,18 @@
             </Principal>
             <Dependent Role="Exam">
               <PropertyRef Name="ClassRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Period">
+          <End Role="Period" Type="Self.Period" Multiplicity="0..1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="PeriodId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -377,7 +415,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_ClassRoom">
-          <End Role="ClassRoom" Type="Self.ClassRoom" Multiplicity="1" />
+          <End Role="ClassRoom" Type="Self.ClassRoom" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ClassRoom">
@@ -385,6 +423,18 @@
             </Principal>
             <Dependent Role="Student">
               <PropertyRef Name="ClassRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GradeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -501,6 +551,7 @@
           <EntitySet Name="Classfication" EntityType="Self.Classfication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClassRoom" EntityType="Self.ClassRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeLog" EntityType="Self.EmployeeLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeePermission" EntityType="Self.EmployeePermission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
@@ -527,6 +578,10 @@
             <End Role="Grade" EntitySet="Grade" />
             <End Role="ClassRoom" EntitySet="ClassRoom" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmployeeLog_Employee" Association="Self.FK_EmployeeLog_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeLog" EntitySet="EmployeeLog" />
+          </AssociationSet>
           <AssociationSet Name="FK_EmployeePermission_Employee" Association="Self.FK_EmployeePermission_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="EmployeePermission" EntitySet="EmployeePermission" />
@@ -537,6 +592,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Exam_ClassRoom" Association="Self.FK_Exam_ClassRoom">
             <End Role="ClassRoom" EntitySet="ClassRoom" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Period" Association="Self.FK_Exam_Period">
+            <End Role="Period" EntitySet="Period" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
           <AssociationSet Name="FK_Exam_Subject" Association="Self.FK_Exam_Subject">
@@ -577,6 +636,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Student_ClassRoom" Association="Self.FK_Student_ClassRoom">
             <End Role="ClassRoom" EntitySet="ClassRoom" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Grade" Association="Self.FK_Student_Grade">
+            <End Role="Grade" EntitySet="Grade" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_StudentExam_ClassRoom" Association="Self.FK_StudentExam_ClassRoom">
@@ -648,9 +711,9 @@
           <NavigationProperty Name="Grade" Relationship="Self.FK_ClassRoom_Grade" FromRole="ClassRoom" ToRole="Grade" />
           <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_ClassRoom" FromRole="ClassRoom" ToRole="Exam" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_ClassRoom" FromRole="ClassRoom" ToRole="Schedule" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_ClassRoom" FromRole="ClassRoom" ToRole="Student" />
           <NavigationProperty Name="StudentExam" Relationship="Self.FK_StudentExam_ClassRoom" FromRole="ClassRoom" ToRole="StudentExam" />
           <NavigationProperty Name="Teacher" Relationship="Self.TeacherClassRoom" FromRole="ClassRoom" ToRole="Teacher" />
+          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="ClassRoom" ToRole="Student" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -666,6 +729,7 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Permission" Relationship="Self.EmployeePermission" FromRole="Employee" ToRole="Permission" />
+          <NavigationProperty Name="EmployeeLog" Relationship="SchoolDBModel.FK_EmployeeLog_Employee" FromRole="Employee" ToRole="EmployeeLog" />
         </EntityType>
         <EntityType Name="Exam">
           <Key>
@@ -680,6 +744,8 @@
           <NavigationProperty Name="ClassRoom" Relationship="Self.FK_Exam_ClassRoom" FromRole="Exam" ToRole="ClassRoom" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Exam_Subject" FromRole="Exam" ToRole="Subject" />
           <NavigationProperty Name="StudentExam" Relationship="Self.FK_StudentExam_Exam" FromRole="Exam" ToRole="StudentExam" />
+          <Property Name="PeriodId" Type="Int32" />
+          <NavigationProperty Name="Period" Relationship="SchoolDBModel.FK_Exam_Period" FromRole="Exam" ToRole="Period" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -690,6 +756,7 @@
           <Property Name="WarrningDate" Type="DateTime" Precision="0" />
           <Property Name="LastDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="GradeFee" Relationship="Self.FK_GradeFee_Fee" FromRole="Fee" ToRole="GradeFee" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -702,6 +769,7 @@
           <NavigationProperty Name="ClassRoom" Relationship="Self.FK_ClassRoom_Grade" FromRole="Grade" ToRole="ClassRoom" />
           <NavigationProperty Name="GradeFee" Relationship="Self.FK_GradeFee_Grade" FromRole="Grade" ToRole="GradeFee" />
           <NavigationProperty Name="Subject" Relationship="Self.SubjectGrade" FromRole="Grade" ToRole="Subject" />
+          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Grade" ToRole="Student" />
         </EntityType>
         <EntityType Name="GradeFee">
           <Key>
@@ -750,9 +818,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Day" Type="Byte" Nullable="false" />
-          <Property Name="StartTime" Type="Time" Precision="7" />
-          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="StartTime" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="Time" Precision="7" Nullable="false" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Period" FromRole="Period" ToRole="Schedule" />
+          <NavigationProperty Name="Exam" Relationship="SchoolDBModel.FK_Exam_Period" FromRole="Period" ToRole="Exam" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
@@ -789,10 +858,13 @@
           <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ClassRoomId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ClassRoom" Relationship="Self.FK_Student_ClassRoom" FromRole="Student" ToRole="ClassRoom" />
+          <Property Name="ClassRoomId" Type="Int32" />
           <NavigationProperty Name="PaymentStudent" Relationship="Self.FK_PaymentStudent_Student" FromRole="Student" ToRole="PaymentStudent" />
           <NavigationProperty Name="StudentExam" Relationship="Self.FK_StudentExam_Student" FromRole="Student" ToRole="StudentExam" />
+          <Property Name="BusRegister" Type="Boolean" />
+          <Property Name="GradeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Student" ToRole="Grade" />
+          <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="Student" ToRole="ClassRoom" />
         </EntityType>
         <EntityType Name="StudentExam">
           <Key>
@@ -817,7 +889,7 @@
           <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Subject" FromRole="Subject" ToRole="Exam" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Subject" FromRole="Subject" ToRole="Schedule" />
           <NavigationProperty Name="Grade" Relationship="Self.SubjectGrade" FromRole="Subject" ToRole="Grade" />
-          <NavigationProperty Name="Teacher" Relationship="Self.TeacherSubject" FromRole="Subject" ToRole="Teacher" />
+          <NavigationProperty Name="Teacher" Relationship="SchoolDBModel.TeacherSubject" FromRole="Subject" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -829,7 +901,7 @@
           <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Teacher" FromRole="Teacher" ToRole="Schedule" />
           <NavigationProperty Name="ClassRoom" Relationship="Self.TeacherClassRoom" FromRole="Teacher" ToRole="ClassRoom" />
-          <NavigationProperty Name="Subject" Relationship="Self.TeacherSubject" FromRole="Teacher" ToRole="Subject" />
+          <NavigationProperty Name="Subject" Relationship="SchoolDBModel.TeacherSubject" FromRole="Teacher" ToRole="Subject" />
         </EntityType>
         <Association Name="FK_Classfication_Grade">
           <End Role="Classfication" Type="Self.Classfication" Multiplicity="1" />
@@ -875,18 +947,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Schedule">
-              <PropertyRef Name="ClassRoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Student_ClassRoom">
-          <End Role="ClassRoom" Type="Self.ClassRoom" Multiplicity="1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClassRoom">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student">
               <PropertyRef Name="ClassRoomId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1035,10 +1095,6 @@
           <End Role="ClassRoom" Type="Self.ClassRoom" Multiplicity="*" />
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
         </Association>
-        <Association Name="TeacherSubject">
-          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="SchoolDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="Classfication" EntityType="Self.Classfication" />
@@ -1073,10 +1129,6 @@
           <AssociationSet Name="FK_Schedule_ClassRoom" Association="Self.FK_Schedule_ClassRoom">
             <End Role="ClassRoom" EntitySet="ClassRoom" />
             <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_ClassRoom" Association="Self.FK_Student_ClassRoom">
-            <End Role="ClassRoom" EntitySet="ClassRoom" />
-            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_StudentExam_ClassRoom" Association="Self.FK_StudentExam_ClassRoom">
             <End Role="ClassRoom" EntitySet="ClassRoom" />
@@ -1134,11 +1186,91 @@
             <End Role="ClassRoom" EntitySet="ClassRoom" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
-          <AssociationSet Name="TeacherSubject" Association="Self.TeacherSubject">
+          <AssociationSet Name="FK_Exam_Period" Association="SchoolDBModel.FK_Exam_Period">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Grade" Association="SchoolDBModel.FK_Student_Grade">
+            <End Role="Grade" EntitySet="Grade" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_ClassRoom" Association="SchoolDBModel.FK_Student_ClassRoom">
+            <End Role="ClassRoom" EntitySet="ClassRoom" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="TeacherSubject" Association="SchoolDBModel.TeacherSubject">
             <End Role="Subject" EntitySet="Subject" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
+          <EntitySet Name="EmployeeLog" EntityType="SchoolDBModel.EmployeeLog" />
+          <AssociationSet Name="FK_EmployeeLog_Employee" Association="SchoolDBModel.FK_EmployeeLog_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeLog" EntitySet="EmployeeLog" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Exam_Period">
+          <End Type="SchoolDBModel.Period" Role="Period" Multiplicity="0..1" />
+          <End Type="SchoolDBModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="PeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Grade">
+          <End Type="SchoolDBModel.Grade" Role="Grade" Multiplicity="1" />
+          <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_ClassRoom">
+          <End Type="SchoolDBModel.ClassRoom" Role="ClassRoom" Multiplicity="0..1" />
+          <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassRoom">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ClassRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeacherSubject">
+          <End Type="SchoolDBModel.Subject" Role="Subject" Multiplicity="*" />
+          <End Type="SchoolDBModel.Teacher" Role="Teacher" Multiplicity="*" />
+        </Association>
+        <EntityType Name="EmployeeLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="SchoolDBModel.FK_EmployeeLog_Employee" FromRole="EmployeeLog" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_EmployeeLog_Employee">
+          <End Type="SchoolDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="SchoolDBModel.EmployeeLog" Role="EmployeeLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmployeeLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1191,6 +1323,7 @@
           <EntitySetMapping Name="Exam">
             <EntityTypeMapping TypeName="SchoolDBModel.Exam">
               <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Mark" ColumnName="Mark" />
                 <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
@@ -1203,6 +1336,7 @@
           <EntitySetMapping Name="Fee">
             <EntityTypeMapping TypeName="SchoolDBModel.Fee">
               <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="WarrningDate" ColumnName="WarrningDate" />
@@ -1289,6 +1423,8 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="SchoolDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="BusRegister" ColumnName="BusRegister" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1353,13 +1489,24 @@
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="TeacherSubject" TypeName="SchoolDBModel.TeacherSubject" StoreEntitySet="TeacherSubject">
-            <EndProperty Name="Subject">
-              <ScalarProperty Name="ID" ColumnName="SubjectId" />
-            </EndProperty>
             <EndProperty Name="Teacher">
               <ScalarProperty Name="ID" ColumnName="TeacherId" />
             </EndProperty>
+            <EndProperty Name="Subject">
+              <ScalarProperty Name="ID" ColumnName="SubjectId" />
+            </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="EmployeeLog">
+            <EntityTypeMapping TypeName="SchoolDBModel.EmployeeLog">
+              <MappingFragment StoreEntitySet="EmployeeLog">
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

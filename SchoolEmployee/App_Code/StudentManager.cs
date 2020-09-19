@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace SchoolWeb.App_Code
@@ -15,7 +16,6 @@ namespace SchoolWeb.App_Code
             {
                 Student s=dBEntities.Student.First(x => x.ID == studentId);
                 
-
                 students =dBEntities.Student
                     .Where(x => x.Discount == "0%")
                     .OrderBy(x=> x.FirstName)
@@ -36,7 +36,6 @@ namespace SchoolWeb.App_Code
                 var sts = from x in dBEntities.Student
                           where x.ID == studentId select x;
 
-                
             }
             return null;
         }

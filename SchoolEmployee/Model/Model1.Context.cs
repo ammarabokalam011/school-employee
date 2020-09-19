@@ -43,5 +43,6 @@ namespace SchoolWeb.Model
         public DbSet<StudentExam> StudentExam { get; set; }
         public DbSet<Subject> Subject { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
+        public DbSet<EmployeeLog> EmployeeLog { get; set; }
     }
 }
