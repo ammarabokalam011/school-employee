@@ -13,20 +13,25 @@
             <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
             <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ></dx:GridViewCommandColumn>
             <dx:GridViewCommandColumn ShowEditButton="true" VisibleIndex="2" ></dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="3">
+            <dx:GridViewDataButtonEditColumn VisibleIndex="3">
                 <EditFormSettings Visible="False"/>
+                <DataItemTemplate>
+                    <asp:Button runat="server" Text="Rest Password" ID="RestPasswordBtn"  AutoPostBack="false" OnClick="RestPasswordBtn_Click" />
+                </DataItemTemplate>
+            </dx:GridViewDataButtonEditColumn>
+            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="4">
+                <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="FirstName" VisibleIndex="4"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="LastName" VisibleIndex="5"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="FatherName" VisibleIndex="6"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="MotherName" VisibleIndex="7"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="BirthDate" VisibleIndex="8"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="Role" VisibleIndex="9"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Username" VisibleIndex="10"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Password" VisibleIndex="11">
-                <EditFormSettings Visible="False"/>
+            <dx:GridViewDataTextColumn FieldName="FirstName" VisibleIndex="5"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="LastName" VisibleIndex="6"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="FatherName" VisibleIndex="7"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="MotherName" VisibleIndex="8"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="BirthDate" VisibleIndex="9"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataTextColumn FieldName="Role" VisibleIndex="10"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Username" VisibleIndex="11"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Password" VisibleIndex="12">
+                <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM Employee WHERE (ID = @ID)" SelectCommand="SELECT ID, FirstName, LastName, FatherName, MotherName, BirthDate, Role, Username, Password FROM Employee" UpdateCommand="UPDATE Employee SET FirstName = @FirstName, LastName = @LastName, FatherName = @FatherName, MotherName = @MotherName, BirthDate = @BirthDate, Username = @Username">

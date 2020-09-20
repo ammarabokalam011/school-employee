@@ -31,5 +31,10 @@ namespace SchoolWeb.AdminPages
             };
             EmployeeManager.AddEmployee(employee);
         }
+
+        protected void RestPasswordBtn_Click(object sender, EventArgs e)
+        {
+            string.Compare("", "");
+        }
     }
 }
