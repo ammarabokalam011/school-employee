@@ -20,8 +20,8 @@ namespace SchoolWeb.App_Code
             {
                 employee = new Employee()
                 {
-                    FirstName="Admin",
-                    
+                    FirstName = "Admin",
+                    Permission = PermissionManager.GetAll(),
                 };
             }
             return employee;

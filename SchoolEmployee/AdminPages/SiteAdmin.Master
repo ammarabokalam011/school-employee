@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteAdmin.Master.cs" Inherits="SchoolWeb.AdminPages.SiteAdmin" %>
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteAdmin.Master.cs" Inherits="SchoolWeb.AdminPages.SiteAdmin" %>
 
 <!DOCTYPE html>
 

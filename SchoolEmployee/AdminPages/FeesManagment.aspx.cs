@@ -7,14 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
 {
-    public partial class SiteAdmin : System.Web.UI.MasterPage
+    public partial class FeesManagment : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("~/Login.aspx");
-            }
+
         }
     }
 }

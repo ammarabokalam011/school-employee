@@ -13,13 +13,15 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!User.IsInRole("ManageEmployees"))
+                Response.Redirect("~/AdminPages/");
         }
 
         protected void ASPxGridView1_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
         {
             Employee employee = new Employee()
             {
+                ID = Guid.NewGuid(),
                 FirstName = e.NewValues[0].ToString(),
                 LastName = e.NewValues[1].ToString(),
                 FatherName = e.NewValues[2].ToString(),
@@ -30,6 +32,9 @@ namespace SchoolWeb.AdminPages
                 Role = e.NewValues[5].ToString(),
             };
             EmployeeManager.AddEmployee(employee);
+            e.Cancel = true ;
+            ASPxGridView1.CancelEdit();
+            ASPxGridView1.DataBind();
         }
 
         protected void RestPasswordBtn_Click(object sender, EventArgs e)

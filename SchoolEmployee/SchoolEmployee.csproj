@@ -187,6 +187,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AdminPages\Employees.aspx" />
+    <Content Include="AdminPages\FeesManagment.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="AdminPages\Home.aspx" />
     <Content Include="Contact.aspx" />
@@ -269,6 +270,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPages\FeesManagment.aspx.cs">
+      <DependentUpon>FeesManagment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\FeesManagment.aspx.designer.cs">
+      <DependentUpon>FeesManagment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\EmployeeManager.cs" />
     <Compile Include="AdminPages\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
@@ -285,6 +293,7 @@
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\Helper.cs" />
+    <Compile Include="App_Code\PermissionManager.cs" />
     <Compile Include="App_Code\StudentManager.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

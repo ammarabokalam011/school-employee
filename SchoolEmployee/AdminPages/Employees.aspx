@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID" Theme="Material" OnRowInserting="ASPxGridView1_RowInserting">
 
-        <Settings ShowFilterRow="True"></Settings>
+        <Settings ShowPreview="true" ShowFilterRow="True"></Settings>
 
         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
         <Columns>
@@ -29,12 +29,15 @@
             <dx:GridViewDataDateColumn FieldName="BirthDate" VisibleIndex="9"></dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn FieldName="Role" VisibleIndex="10"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Username" VisibleIndex="11"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Password" VisibleIndex="12">
+            <dx:GridViewDataTextColumn FieldName="Password" Visible="false" VisibleIndex="12">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
         </Columns>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM Employee WHERE (ID = @ID)" SelectCommand="SELECT ID, FirstName, LastName, FatherName, MotherName, BirthDate, Role, Username, Password FROM Employee" UpdateCommand="UPDATE Employee SET FirstName = @FirstName, LastName = @LastName, FatherName = @FatherName, MotherName = @MotherName, BirthDate = @BirthDate, Username = @Username">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
+        DeleteCommand="DELETE FROM Employee WHERE (ID = @ID)"
+        SelectCommand="SELECT ID, FirstName, LastName, FatherName, MotherName, BirthDate, Role, Username, Password FROM Employee"
+        UpdateCommand="UPDATE Employee SET FirstName = @FirstName, LastName = @LastName, FatherName = @FatherName, MotherName = @MotherName, BirthDate = @BirthDate, Username = @Username">
         <DeleteParameters>
             <asp:Parameter Name="ID"></asp:Parameter>
         </DeleteParameters>

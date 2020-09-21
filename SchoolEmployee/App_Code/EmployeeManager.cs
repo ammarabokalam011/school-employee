@@ -3,9 +3,9 @@ using SchoolWeb.Model;
 
 namespace SchoolWeb.AdminPages
 {
-    internal class EmployeeManager
+    public class EmployeeManager
     {
-        internal static void AddEmployee(Employee employee)
+        public static void AddEmployee(Employee employee)
         {
             using(SchoolDBEntities db= new SchoolDBEntities())
             {
