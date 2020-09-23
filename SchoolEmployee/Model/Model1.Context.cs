@@ -29,6 +29,7 @@ namespace SchoolWeb.Model
         public DbSet<Classfication> Classfication { get; set; }
         public DbSet<ClassRoom> ClassRoom { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<EmployeeLog> EmployeeLog { get; set; }
         public DbSet<Exam> Exam { get; set; }
         public DbSet<Fee> Fee { get; set; }
         public DbSet<Grade> Grade { get; set; }
@@ -43,6 +44,5 @@ namespace SchoolWeb.Model
         public DbSet<StudentExam> StudentExam { get; set; }
         public DbSet<Subject> Subject { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
-        public DbSet<EmployeeLog> EmployeeLog { get; set; }
     }
 }

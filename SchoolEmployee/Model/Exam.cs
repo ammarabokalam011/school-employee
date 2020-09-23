@@ -28,8 +28,8 @@ namespace SchoolWeb.Model
         public Nullable<int> PeriodId { get; set; }
     
         public virtual ClassRoom ClassRoom { get; set; }
+        public virtual Period Period { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }
-        public virtual Period Period { get; set; }
     }
 }

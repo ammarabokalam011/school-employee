@@ -18,9 +18,9 @@ namespace SchoolWeb.Model
         {
             this.Exam = new HashSet<Exam>();
             this.Schedule = new HashSet<Schedule>();
+            this.Student = new HashSet<Student>();
             this.StudentExam = new HashSet<StudentExam>();
             this.Teacher = new HashSet<Teacher>();
-            this.Student = new HashSet<Student>();
         }
     
         public int ID { get; set; }
@@ -31,8 +31,8 @@ namespace SchoolWeb.Model
         public virtual Grade Grade { get; set; }
         public virtual ICollection<Exam> Exam { get; set; }
         public virtual ICollection<Schedule> Schedule { get; set; }
+        public virtual ICollection<Student> Student { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }
         public virtual ICollection<Teacher> Teacher { get; set; }
-        public virtual ICollection<Student> Student { get; set; }
     }
 }

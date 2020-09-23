@@ -18,16 +18,16 @@ namespace SchoolWeb.Model
         {
             this.Exam = new HashSet<Exam>();
             this.Schedule = new HashSet<Schedule>();
-            this.Grade = new HashSet<Grade>();
             this.Teacher = new HashSet<Teacher>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public int GradeId { get; set; }
     
         public virtual ICollection<Exam> Exam { get; set; }
+        public virtual Grade Grade { get; set; }
         public virtual ICollection<Schedule> Schedule { get; set; }
-        public virtual ICollection<Grade> Grade { get; set; }
         public virtual ICollection<Teacher> Teacher { get; set; }
     }
 }

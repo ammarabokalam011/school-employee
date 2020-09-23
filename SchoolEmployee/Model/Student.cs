@@ -33,9 +33,9 @@ namespace SchoolWeb.Model
         public string Username { get; set; }
         public string Password { get; set; }
     
+        public virtual ClassRoom ClassRoom { get; set; }
+        public virtual Grade Grade { get; set; }
         public virtual ICollection<PaymentStudent> PaymentStudent { get; set; }
         public virtual ICollection<StudentExam> StudentExam { get; set; }
-        public virtual Grade Grade { get; set; }
-        public virtual ClassRoom ClassRoom { get; set; }
     }
 }

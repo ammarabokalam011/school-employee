@@ -16,8 +16,8 @@ namespace SchoolWeb.Model
     {
         public Period()
         {
-            this.Schedule = new HashSet<Schedule>();
             this.Exam = new HashSet<Exam>();
+            this.Schedule = new HashSet<Schedule>();
         }
     
         public int ID { get; set; }
@@ -25,7 +25,7 @@ namespace SchoolWeb.Model
         public System.TimeSpan StartTime { get; set; }
         public System.TimeSpan EndTime { get; set; }
     
-        public virtual ICollection<Schedule> Schedule { get; set; }
         public virtual ICollection<Exam> Exam { get; set; }
+        public virtual ICollection<Schedule> Schedule { get; set; }
     }
 }

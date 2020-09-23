@@ -16,8 +16,8 @@ namespace SchoolWeb.Model
     {
         public Employee()
         {
-            this.Permission = new HashSet<Permission>();
             this.EmployeeLog = new HashSet<EmployeeLog>();
+            this.Permission = new HashSet<Permission>();
         }
     
         public System.Guid ID { get; set; }
@@ -30,7 +30,7 @@ namespace SchoolWeb.Model
         public string Username { get; set; }
         public string Password { get; set; }
     
-        public virtual ICollection<Permission> Permission { get; set; }
         public virtual ICollection<EmployeeLog> EmployeeLog { get; set; }
+        public virtual ICollection<Permission> Permission { get; set; }
     }
 }
