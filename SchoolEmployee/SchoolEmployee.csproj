@@ -233,6 +233,8 @@
       <DependentUpon>SchoolModel.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="SchoolSchema.sql" />
+    <Content Include="SchoolData.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

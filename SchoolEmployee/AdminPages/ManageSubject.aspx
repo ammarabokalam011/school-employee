@@ -5,8 +5,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ClassficationID" Theme="MaterialCompact">
+        <Settings ShowFilterRow="True" ShowGroupPanel="True"></Settings>
+
+        <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
         <Columns>
-            <dx:GridViewCommandColumn VisibleIndex="1" ShowEditButton="True" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
+            <dx:GridViewCommandColumn VisibleIndex="1" ShowEditButton="True" ShowNewButtonInHeader="True" ShowClearFilterButton="True" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True"></dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn FieldName="ClassficationID" Visible="false" ReadOnly="True" VisibleIndex="2">
                 <EditFormSettings Visible="False" ></EditFormSettings>
             </dx:GridViewDataTextColumn>
@@ -14,6 +17,7 @@
             <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="0"></dx:GridViewCommandColumn>
         </Columns>
         <Templates>
+            
             <DetailRow>
                  Classfication Name: 
                  <dx:ASPxLabel runat="server" Text='<%# Eval("ClassficationName") %>' Font-Bold="true" />
