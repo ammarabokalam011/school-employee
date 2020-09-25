@@ -1,11 +1,8 @@
-﻿using SchoolWeb.App_Code;
+﻿using DevExpress.Web;
+using SchoolWeb.App_Code;
 using SchoolWeb.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
 {
@@ -39,7 +36,17 @@ namespace SchoolWeb.AdminPages
 
         protected void RestPasswordBtn_Click(object sender, EventArgs e)
         {
-            string.Compare("", "");
+            ASPxButton btn = (ASPxButton)sender;
+            GridViewDataItemTemplateContainer container = (GridViewDataItemTemplateContainer)btn.NamingContainer;
+            Guid guid = Guid.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
+            if (EmployeeManager.RestPassword(guid))
+            {
+                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Succses')",false);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Failed')", false);
+            }
         }
     }
 }

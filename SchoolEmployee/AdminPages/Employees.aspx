@@ -5,20 +5,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID" Theme="Material" OnRowInserting="ASPxGridView1_RowInserting">
-
         <Settings ShowPreview="true" ShowFilterRow="True"></Settings>
-
         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
         <Columns>
             <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
             <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ></dx:GridViewCommandColumn>
             <dx:GridViewCommandColumn ShowEditButton="true" VisibleIndex="2" ></dx:GridViewCommandColumn>
-            <dx:GridViewDataButtonEditColumn VisibleIndex="3">
+            <dx:GridViewDataColumn VisibleIndex="3">
                 <EditFormSettings Visible="False"/>
                 <DataItemTemplate>
-                    <asp:Button runat="server" Text="Rest Password" ID="RestPasswordBtn"  AutoPostBack="false" OnClick="RestPasswordBtn_Click" />
+                    <dx:ASPxButton runat="server" Text="Rest Password" ID="RestPasswordBtn" AutoPostBack="false" OnClick="RestPasswordBtn_Click" />
                 </DataItemTemplate>
-            </dx:GridViewDataButtonEditColumn>
+            </dx:GridViewDataColumn>
             <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="4">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
