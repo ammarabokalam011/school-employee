@@ -32,7 +32,6 @@ namespace SchoolWeb.AdminPages
                     if (employee != null)
                     {
                         employee.Password = Helper.HashSHA256(employee.Username);
-                        db.Employee.Add(employee);
                         db.SaveChanges();
                         return true;
                     }

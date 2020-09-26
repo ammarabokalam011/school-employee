@@ -41,11 +41,11 @@ namespace SchoolWeb.AdminPages
             Guid guid = Guid.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
             if (EmployeeManager.RestPassword(guid))
             {
-                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Succses')",false);
+                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Succses')", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Failed')", false);
+                ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Failed')", true);
             }
         }
     }
