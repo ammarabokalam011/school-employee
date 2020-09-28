@@ -3,6 +3,8 @@ using SchoolWeb.App_Code;
 using SchoolWeb.Model;
 using System;
 using System.Web.UI;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SchoolWeb.AdminPages
 {
@@ -47,6 +49,46 @@ namespace SchoolWeb.AdminPages
             {
                 ScriptManager.RegisterStartupScript(this,GetType(),"Alert","alert('Failed')", true);
             }
+        }
+
+        protected void EditPermission_Click(object sender, EventArgs e)
+        {
+            ASPxButton btn = (ASPxButton)sender;
+            GridViewDataItemTemplateContainer container = (GridViewDataItemTemplateContainer)btn.NamingContainer;
+            Guid guid = Guid.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
+            Session["EmployeeId"] = guid;
+            ASPxCheckBoxList1.DataBind();
+            MultiView1.ActiveViewIndex = 1;
+        }
+
+        protected void ASPxCheckBoxList1_DataBound(object sender, EventArgs e)
+        {
+            ASPxCheckBoxList control = (ASPxCheckBoxList)sender;
+            List<Permission> permissions = PermissionManager.GetEmployeePermissions( Guid.Parse(Session["EmployeeId"].ToString()));
+            foreach (ListEditItem item in control.Items)
+            {
+                item.Selected = permissions.Any(x=> x.ID == int.Parse(item.Value.ToString()));
+            }
+        }
+
+        protected void ASPxButtonEditPermisson_Click(object sender, EventArgs e)
+        {
+            List<int> ids = new List<int>();
+            foreach (ListEditItem item in ASPxCheckBoxList1.SelectedItems)
+            {
+                if (item.Selected)
+                    ids.Add(int.Parse(item.Value.ToString()));
+            }
+            PermissionManager.EditPermissions(ids, Guid.Parse(Session["EmployeeId"].ToString()));
+            ASPxCheckBoxList1.DataBind();
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void ASPxButtonBack_Click(object sender, EventArgs e)
+        {
+            Session["EmployeeId"] = "";
+            ASPxGridView1.DataBind();
+            MultiView1.ActiveViewIndex = 0;
         }
     }
 }

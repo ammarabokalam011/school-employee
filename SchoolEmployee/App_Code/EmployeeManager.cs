@@ -3,22 +3,40 @@ using SchoolWeb.App_Code;
 using SchoolWeb.Model;
 using System.Linq;
 
-namespace SchoolWeb.AdminPages
+namespace SchoolWeb.App_Code
 {
     public class EmployeeManager
     {
         public static void AddEmployee(Employee employee)
         {
-            using(SchoolDBEntities db= new SchoolDBEntities())
+            using (SchoolDBEntities db = new SchoolDBEntities())
             {
-                try{
+                try
+                {
                     db.Employee.Add(employee);
                     db.SaveChanges();
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
-                    String.Compare("","");
+                    String.Compare("", "");
                 }
             }
+        }
+        public static Employee GetEmployeeById(Guid Id)
+        {
+            Employee employee = null;
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    employee= db.Employee.Where(x=>x.ID== Id).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    String.Compare("", "");
+                }
+            }
+            return employee;
         }
 
         internal static bool RestPassword(Guid guid)
@@ -47,5 +65,6 @@ namespace SchoolWeb.AdminPages
                 return false;
             }
         }
+
     }
 }

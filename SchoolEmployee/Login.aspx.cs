@@ -27,7 +27,7 @@ namespace SchoolWeb
                 string cookiestr;
                 HttpCookie ck;
                 tkt = new FormsAuthenticationTicket(1, username, DateTime.Now,
-                DateTime.Now.AddMinutes(30), RememberMeCheckBox.Checked, String.Join("|", employee.Permission.Select(x=> x.Name)));
+                DateTime.Now.AddHours(2), RememberMeCheckBox.Checked, String.Join("|", employee.Permission.Select(x=> x.Name)));
                 //commaSeperatedRoles AddStudnet,EditStudent,Addpayment
                 cookiestr = FormsAuthentication.Encrypt(tkt);
                 ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
@@ -35,7 +35,14 @@ namespace SchoolWeb
                     ck.Expires = tkt.Expiration;
                 ck.Path = FormsAuthentication.FormsCookiePath;
                 Response.Cookies.Add(ck);
-                Response.Redirect("/AdminPages/Home.aspx");
+                if (Request.QueryString["ReturnUrl"] != null)
+                {
+                    Response.Redirect(Request.QueryString["ReturnUrl"].ToString());
+                }
+                else
+                {
+                    Response.Redirect("/AdminPages/default");
+                }
             }
         }
     }
