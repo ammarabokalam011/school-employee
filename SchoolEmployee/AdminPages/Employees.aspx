@@ -11,8 +11,7 @@
                 <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
                 <Columns>
                     <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
-                    <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1"></dx:GridViewCommandColumn>
-                    <dx:GridViewCommandColumn ShowEditButton="true" VisibleIndex="2"></dx:GridViewCommandColumn>
+                    <dx:GridViewCommandColumn VisibleIndex="2" ShowEditButton="True"></dx:GridViewCommandColumn>
                     <dx:GridViewDataColumn VisibleIndex="3">
                         <EditFormSettings Visible="False" />
                         <DataItemTemplate>

@@ -83,6 +83,8 @@
           <Property Name="WarrningDate" Type="date" />
           <Property Name="LastDate" Type="date" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="GradeId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -91,15 +93,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="ClassficationID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="GradeFee">
-          <Key>
-            <PropertyRef Name="GradeId" />
-            <PropertyRef Name="FeeId" />
-          </Key>
-          <Property Name="GradeId" Type="int" Nullable="false" />
-          <Property Name="FeeId" Type="int" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -313,26 +306,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GradeFee_Fee">
-          <End Role="Fee" Type="Self.Fee" Multiplicity="1" />
-          <End Role="GradeFee" Type="Self.GradeFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fee">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="GradeFee">
-              <PropertyRef Name="FeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GradeFee_Grade">
+        <Association Name="FK_Fee_Grade">
           <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
-          <End Role="GradeFee" Type="Self.GradeFee" Multiplicity="*" />
+          <End Role="Fee" Type="Self.Fee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Grade">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="GradeFee">
+            <Dependent Role="Fee">
               <PropertyRef Name="GradeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -539,7 +520,6 @@
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GradeFee" EntityType="Self.GradeFee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentStudent" EntityType="Self.PaymentStudent" Schema="dbo" store:Type="Tables" />
@@ -584,13 +564,9 @@
             <End Role="Subject" EntitySet="Subject" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
-          <AssociationSet Name="FK_GradeFee_Fee" Association="Self.FK_GradeFee_Fee">
-            <End Role="Fee" EntitySet="Fee" />
-            <End Role="GradeFee" EntitySet="GradeFee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GradeFee_Grade" Association="Self.FK_GradeFee_Grade">
+          <AssociationSet Name="FK_Fee_Grade" Association="Self.FK_Fee_Grade">
             <End Role="Grade" EntitySet="Grade" />
-            <End Role="GradeFee" EntitySet="GradeFee" />
+            <End Role="Fee" EntitySet="Fee" />
           </AssociationSet>
           <AssociationSet Name="FK_PaymentStudent_Payment" Association="Self.FK_PaymentStudent_Payment">
             <End Role="Payment" EntitySet="Payment" />
@@ -670,7 +646,6 @@
           <EntitySet Name="Exam" EntityType="SchoolDBModel.Exam" />
           <EntitySet Name="Fee" EntityType="SchoolDBModel.Fee" />
           <EntitySet Name="Grade" EntityType="SchoolDBModel.Grade" />
-          <EntitySet Name="GradeFee" EntityType="SchoolDBModel.GradeFee" />
           <EntitySet Name="News" EntityType="SchoolDBModel.News" />
           <EntitySet Name="Payment" EntityType="SchoolDBModel.Payment" />
           <EntitySet Name="PaymentStudent" EntityType="SchoolDBModel.PaymentStudent" />
@@ -721,13 +696,9 @@
             <End Role="Exam" EntitySet="Exam" />
             <End Role="StudentExam" EntitySet="StudentExam" />
           </AssociationSet>
-          <AssociationSet Name="FK_GradeFee_Fee" Association="SchoolDBModel.FK_GradeFee_Fee">
-            <End Role="Fee" EntitySet="Fee" />
-            <End Role="GradeFee" EntitySet="GradeFee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GradeFee_Grade" Association="SchoolDBModel.FK_GradeFee_Grade">
+          <AssociationSet Name="FK_Fee_Grade" Association="SchoolDBModel.FK_Fee_Grade">
             <End Role="Grade" EntitySet="Grade" />
-            <End Role="GradeFee" EntitySet="GradeFee" />
+            <End Role="Fee" EntitySet="Fee" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Grade" Association="SchoolDBModel.FK_Student_Grade">
             <End Role="Grade" EntitySet="Grade" />
@@ -858,7 +829,9 @@
           <Property Name="WarrningDate" Type="DateTime" Precision="0" />
           <Property Name="LastDate" Type="DateTime" Precision="0" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GradeFee" Relationship="SchoolDBModel.FK_GradeFee_Fee" FromRole="Fee" ToRole="GradeFee" />
+          <Property Name="GradeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Fee_Grade" FromRole="Fee" ToRole="Grade" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -869,20 +842,9 @@
           <Property Name="ClassficationID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Classfication" Relationship="SchoolDBModel.FK_Classfication_Grade" FromRole="Grade" ToRole="Classfication" />
           <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_ClassRoom_Grade" FromRole="Grade" ToRole="ClassRoom" />
-          <NavigationProperty Name="GradeFee" Relationship="SchoolDBModel.FK_GradeFee_Grade" FromRole="Grade" ToRole="GradeFee" />
+          <NavigationProperty Name="Fee" Relationship="SchoolDBModel.FK_Fee_Grade" FromRole="Grade" ToRole="Fee" />
           <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Grade" ToRole="Student" />
           <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK_Subject_Grade" FromRole="Grade" ToRole="Subject" />
-        </EntityType>
-        <EntityType Name="GradeFee">
-          <Key>
-            <PropertyRef Name="GradeId" />
-            <PropertyRef Name="FeeId" />
-          </Key>
-          <Property Name="GradeId" Type="Int32" Nullable="false" />
-          <Property Name="FeeId" Type="Int32" Nullable="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Fee" Relationship="SchoolDBModel.FK_GradeFee_Fee" FromRole="GradeFee" ToRole="Fee" />
-          <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_GradeFee_Grade" FromRole="GradeFee" ToRole="Grade" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -1128,26 +1090,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GradeFee_Fee">
-          <End Type="SchoolDBModel.Fee" Role="Fee" Multiplicity="1" />
-          <End Type="SchoolDBModel.GradeFee" Role="GradeFee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fee">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="GradeFee">
-              <PropertyRef Name="FeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GradeFee_Grade">
+        <Association Name="FK_Fee_Grade">
           <End Type="SchoolDBModel.Grade" Role="Grade" Multiplicity="1" />
-          <End Type="SchoolDBModel.GradeFee" Role="GradeFee" Multiplicity="*" />
+          <End Type="SchoolDBModel.Fee" Role="Fee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Grade">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="GradeFee">
+            <Dependent Role="Fee">
               <PropertyRef Name="GradeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1336,6 +1286,8 @@
           <EntitySetMapping Name="Fee">
             <EntityTypeMapping TypeName="SchoolDBModel.Fee">
               <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LastDate" ColumnName="LastDate" />
                 <ScalarProperty Name="WarrningDate" ColumnName="WarrningDate" />
@@ -1350,15 +1302,6 @@
                 <ScalarProperty Name="ClassficationID" ColumnName="ClassficationID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GradeFee">
-            <EntityTypeMapping TypeName="SchoolDBModel.GradeFee">
-              <MappingFragment StoreEntitySet="GradeFee">
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="FeeId" ColumnName="FeeId" />
-                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

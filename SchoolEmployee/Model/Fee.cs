@@ -16,7 +16,6 @@ namespace SchoolWeb.Model
     {
         public Fee()
         {
-            this.GradeFee = new HashSet<GradeFee>();
         }
     
         public int ID { get; set; }
@@ -24,7 +23,12 @@ namespace SchoolWeb.Model
         public Nullable<System.DateTime> WarrningDate { get; set; }
         public Nullable<System.DateTime> LastDate { get; set; }
         public string Name { get; set; }
-    
-        public virtual ICollection<GradeFee> GradeFee { get; set; }
+
+        public int GradeId { get; set; }
+        public int Year { get; set; }
+
+        public virtual Grade Grade { get; set; }
+
+
     }
 }

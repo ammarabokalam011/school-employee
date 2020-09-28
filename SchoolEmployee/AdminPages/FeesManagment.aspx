@@ -7,19 +7,27 @@
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="MaterialCompact" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID">
         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
         <Columns>
-            <dx:GridViewCommandColumn ShowSelectCheckbox="True" VisibleIndex="0"  SelectAllCheckboxMode="Page"></dx:GridViewCommandColumn>
-            <dx:GridViewCommandColumn ShowClearFilterButton="True" VisibleIndex="1" ShowEditButton="True" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
-            <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="2"></dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="3" Visible="False">
+            <dx:GridViewCommandColumn  VisibleIndex="0" ShowDeleteButton="True" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="2">
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="4"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="WarrningDate" VisibleIndex="5"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataDateColumn FieldName="LastDate" VisibleIndex="6"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="7"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="3"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="WarrningDate" VisibleIndex="4"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataDateColumn FieldName="LastDate" VisibleIndex="5"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="6"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataComboBoxColumn FieldName="GradeId" VisibleIndex="8">
+                <PropertiesComboBox TextField="GradeName" ValueField="GradeId1" ValueType="System.Int32" DataSourceID="SqlDataSource2">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="7"></dx:GridViewDataTextColumn>
+            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="1"></dx:GridViewCommandColumn>
         </Columns>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM Fee WHERE (ID = @ID)" InsertCommand="INSERT INTO Fee(Amount, WarrningDate, LastDate, Name) VALUES (@Amount, @WarrningDate, @LastDate, @Name)" SelectCommand="SELECT Fee.* FROM Fee" UpdateCommand="UPDATE Fee SET Amount = @Amount, WarrningDate = @WarrningDate, LastDate = @LastDate, Name = @Name WHERE (ID = @ID)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' 
+        DeleteCommand="DELETE FROM Fee WHERE (ID = @ID)"
+        InsertCommand="INSERT INTO Fee(Amount, WarrningDate, LastDate, Name, GradeId, Year) VALUES (@Amount, @WarrningDate, @LastDate, @Name, @GradeId, @Year)"
+        SelectCommand="SELECT Fee.* FROM Fee"
+        UpdateCommand="UPDATE Fee SET Amount = @Amount, WarrningDate = @WarrningDate, LastDate = @LastDate, Name = @Name, GradeId = @GradeId, Year = @Year WHERE (ID = @ID)">
         <DeleteParameters>
             <asp:Parameter Name="ID"></asp:Parameter>
         </DeleteParameters>
@@ -28,13 +36,18 @@
             <asp:Parameter Name="WarrningDate"></asp:Parameter>
             <asp:Parameter Name="LastDate"></asp:Parameter>
             <asp:Parameter Name="Name"></asp:Parameter>
+            <asp:Parameter Name="GradeId"></asp:Parameter>
+            <asp:Parameter Name="Year"></asp:Parameter>
         </InsertParameters>
         <UpdateParameters>
             <asp:Parameter Name="Amount"></asp:Parameter>
             <asp:Parameter Name="WarrningDate"></asp:Parameter>
             <asp:Parameter Name="LastDate"></asp:Parameter>
             <asp:Parameter Name="Name"></asp:Parameter>
+            <asp:Parameter Name="GradeId"></asp:Parameter>
+            <asp:Parameter Name="Year"></asp:Parameter>
             <asp:Parameter Name="ID"></asp:Parameter>
         </UpdateParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' SelectCommand="SELECT ID AS GradeId1, Name AS GradeName FROM Grade"></asp:SqlDataSource>
 </asp:Content>

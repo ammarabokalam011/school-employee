@@ -33,7 +33,6 @@ namespace SchoolWeb.Model
         public DbSet<Exam> Exam { get; set; }
         public DbSet<Fee> Fee { get; set; }
         public DbSet<Grade> Grade { get; set; }
-        public DbSet<GradeFee> GradeFee { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<PaymentStudent> PaymentStudent { get; set; }

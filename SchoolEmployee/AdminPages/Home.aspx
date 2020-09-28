@@ -5,7 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-       <dx:ASPxButton ID="EmployeeManage" OnClick="EmployeeManage_Click" runat="server" Text="EmployeeManage" Theme="MaterialCompact"></dx:ASPxButton>
+       <dx:ASPxButton ID="EmployeeManage" OnClick="EmployeeManage_Click" runat="server" Text="Employee Manage" Theme="MaterialCompact"></dx:ASPxButton>
+       <dx:ASPxButton ID="FeeManagment" OnClick="FeeManagment_Click" runat="server" Text="Fee Managment" Theme="MaterialCompact"></dx:ASPxButton>
+       <dx:ASPxButton ID="ManageSubject" OnClick="ManageSubject_Click" runat="server" Text="Manage Subject" Theme="MaterialCompact"></dx:ASPxButton>
     </div>
     
 </asp:Content>

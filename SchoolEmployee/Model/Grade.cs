@@ -17,9 +17,9 @@ namespace SchoolWeb.Model
         public Grade()
         {
             this.ClassRoom = new HashSet<ClassRoom>();
-            this.GradeFee = new HashSet<GradeFee>();
             this.Student = new HashSet<Student>();
             this.Subject = new HashSet<Subject>();
+            this.Fee = new HashSet<Fee>();
         }
     
         public int ID { get; set; }
@@ -28,8 +28,10 @@ namespace SchoolWeb.Model
     
         public virtual Classfication Classfication { get; set; }
         public virtual ICollection<ClassRoom> ClassRoom { get; set; }
-        public virtual ICollection<GradeFee> GradeFee { get; set; }
+        
         public virtual ICollection<Student> Student { get; set; }
         public virtual ICollection<Subject> Subject { get; set; }
+
+        public virtual ICollection<Fee> Fee { get; set; }
     }
 }

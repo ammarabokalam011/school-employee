@@ -19,5 +19,15 @@ namespace SchoolWeb.AdminPages
             //TODO Check permisssion
             Response.Redirect("/AdminPages/Employees.aspx");
         }
+
+        protected void FeeManagment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/AdminPages/FeesManagment.aspx");
+        }
+
+        protected void ManageSubject_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/AdminPages/ManageSubject.aspx");
+        }
     }
 }
