@@ -16,7 +16,6 @@ namespace SchoolWeb.Model
     {
         public Payment()
         {
-            this.PaymentStudent = new HashSet<PaymentStudent>();
         }
     
         public int ID { get; set; }
@@ -24,7 +23,10 @@ namespace SchoolWeb.Model
         public int Amount { get; set; }
         public string Creditor { get; set; }
         public string Debtor { get; set; }
-    
-        public virtual ICollection<PaymentStudent> PaymentStudent { get; set; }
+        public Guid StudentId { get; set; }
+        public int FeeId { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Fee Fee { get; set; }
+
     }
 }

@@ -6,23 +6,22 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b45c6b393d70485793e6a9208bfd38d9" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="SchoolDBModel.Article" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SchoolDBModel.Classfication" Width="1.5" PointX="0.75" PointY="11.375" />
-        <EntityTypeShape EntityType="SchoolDBModel.ClassRoom" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="SchoolDBModel.Classfication" Width="1.5" PointX="0.75" PointY="11.625" />
+        <EntityTypeShape EntityType="SchoolDBModel.ClassRoom" Width="1.5" PointX="5.25" PointY="14.25" />
         <EntityTypeShape EntityType="SchoolDBModel.Employee" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="SchoolDBModel.EmployeeLog" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="SchoolDBModel.Exam" Width="1.5" PointX="10.5" PointY="13" />
-        <EntityTypeShape EntityType="SchoolDBModel.Fee" Width="1.5" PointX="5.25" PointY="14.375" />
-        <EntityTypeShape EntityType="SchoolDBModel.Grade" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="SchoolDBModel.Exam" Width="1.5" PointX="10.5" PointY="8.625" />
+        <EntityTypeShape EntityType="SchoolDBModel.Fee" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="SchoolDBModel.Grade" Width="1.5" PointX="3" PointY="11.125" />
         <EntityTypeShape EntityType="SchoolDBModel.News" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SchoolDBModel.Payment" Width="1.5" PointX="7.5" PointY="5.375" />
-        <EntityTypeShape EntityType="SchoolDBModel.PaymentStudent" Width="1.5" PointX="9.75" PointY="6.5" />
-        <EntityTypeShape EntityType="SchoolDBModel.Period" Width="1.5" PointX="10.5" PointY="3.5" />
+        <EntityTypeShape EntityType="SchoolDBModel.Payment" Width="1.5" PointX="12.75" PointY="7.5" />
+        <EntityTypeShape EntityType="SchoolDBModel.Period" Width="1.5" PointX="8.25" PointY="5" />
         <EntityTypeShape EntityType="SchoolDBModel.Permission" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="SchoolDBModel.Schedule" Width="1.5" PointX="12.75" PointY="9.375" />
-        <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="7.5" PointY="8.5" />
-        <EntityTypeShape EntityType="SchoolDBModel.StudentExam" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="SchoolDBModel.Subject" Width="1.5" PointX="5.25" PointY="11.25" />
-        <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="10.5" PointY="9.375" />
+        <EntityTypeShape EntityType="SchoolDBModel.Schedule" Width="1.5" PointX="10.5" PointY="12.875" />
+        <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="7.5" PointY="12.125" />
+        <EntityTypeShape EntityType="SchoolDBModel.StudentExam" Width="1.5" PointX="12.75" PointY="11.625" />
+        <EntityTypeShape EntityType="SchoolDBModel.Subject" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="7.5" PointY="9" />
         <AssociationConnector Association="SchoolDBModel.FK_Classfication_Grade" />
         <AssociationConnector Association="SchoolDBModel.FK_ClassRoom_Grade" />
         <AssociationConnector Association="SchoolDBModel.FK_Exam_ClassRoom" />
@@ -34,10 +33,10 @@
         <AssociationConnector Association="SchoolDBModel.FK_Exam_Subject" />
         <AssociationConnector Association="SchoolDBModel.FK_StudentExam_Exam" />
         <AssociationConnector Association="SchoolDBModel.FK_Fee_Grade" />
+        <AssociationConnector Association="SchoolDBModel.FK_Payment_Fee" />
         <AssociationConnector Association="SchoolDBModel.FK_Student_Grade" />
         <AssociationConnector Association="SchoolDBModel.FK_Subject_Grade" />
-        <AssociationConnector Association="SchoolDBModel.FK_PaymentStudent_Payment" />
-        <AssociationConnector Association="SchoolDBModel.FK_PaymentStudent_Student" />
+        <AssociationConnector Association="SchoolDBModel.FK_Payment_Student" />
         <AssociationConnector Association="SchoolDBModel.FK_Schedule_Period" />
         <AssociationConnector Association="SchoolDBModel.FK_Schedule_Subject" />
         <AssociationConnector Association="SchoolDBModel.FK_Schedule_Teacher" />

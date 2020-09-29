@@ -101,6 +101,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Detail" Type="varchar(max)" Nullable="false" />
           <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="FinishedDate" Type="datetime" Nullable="false" />
+          <Property Name="Visible" Type="bit" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -111,15 +113,8 @@
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="Creditor" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Debtor" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PaymentStudent">
-          <Key>
-            <PropertyRef Name="PaymentID" />
-            <PropertyRef Name="StudentID" />
-          </Key>
-          <Property Name="PaymentID" Type="int" Nullable="false" />
-          <Property Name="StudentID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FeeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Period">
           <Key>
@@ -318,27 +313,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentStudent_Payment">
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
-          <End Role="PaymentStudent" Type="Self.PaymentStudent" Multiplicity="*" />
+        <Association Name="FK_Payment_Fee">
+          <End Role="Fee" Type="Self.Fee" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Payment">
+            <Principal Role="Fee">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PaymentStudent">
-              <PropertyRef Name="PaymentID" />
+            <Dependent Role="Payment">
+              <PropertyRef Name="FeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentStudent_Student">
+        <Association Name="FK_Payment_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="PaymentStudent" Type="Self.PaymentStudent" Multiplicity="*" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PaymentStudent">
-              <PropertyRef Name="StudentID" />
+            <Dependent Role="Payment">
+              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -522,7 +517,6 @@
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PaymentStudent" EntityType="Self.PaymentStudent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Period" EntityType="Self.Period" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
@@ -568,13 +562,13 @@
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Fee" EntitySet="Fee" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentStudent_Payment" Association="Self.FK_PaymentStudent_Payment">
+          <AssociationSet Name="FK_Payment_Fee" Association="Self.FK_Payment_Fee">
+            <End Role="Fee" EntitySet="Fee" />
             <End Role="Payment" EntitySet="Payment" />
-            <End Role="PaymentStudent" EntitySet="PaymentStudent" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentStudent_Student" Association="Self.FK_PaymentStudent_Student">
+          <AssociationSet Name="FK_Payment_Student" Association="Self.FK_Payment_Student">
             <End Role="Student" EntitySet="Student" />
-            <End Role="PaymentStudent" EntitySet="PaymentStudent" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_Schedule_ClassRoom" Association="Self.FK_Schedule_ClassRoom">
             <End Role="ClassRoom" EntitySet="ClassRoom" />
@@ -648,7 +642,6 @@
           <EntitySet Name="Grade" EntityType="SchoolDBModel.Grade" />
           <EntitySet Name="News" EntityType="SchoolDBModel.News" />
           <EntitySet Name="Payment" EntityType="SchoolDBModel.Payment" />
-          <EntitySet Name="PaymentStudent" EntityType="SchoolDBModel.PaymentStudent" />
           <EntitySet Name="Period" EntityType="SchoolDBModel.Period" />
           <EntitySet Name="Permission" EntityType="SchoolDBModel.Permission" />
           <EntitySet Name="Schedule" EntityType="SchoolDBModel.Schedule" />
@@ -700,6 +693,10 @@
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Fee" EntitySet="Fee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Payment_Fee" Association="SchoolDBModel.FK_Payment_Fee">
+            <End Role="Fee" EntitySet="Fee" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_Grade" Association="SchoolDBModel.FK_Student_Grade">
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Student" EntitySet="Student" />
@@ -708,13 +705,9 @@
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Subject" EntitySet="Subject" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentStudent_Payment" Association="SchoolDBModel.FK_PaymentStudent_Payment">
-            <End Role="Payment" EntitySet="Payment" />
-            <End Role="PaymentStudent" EntitySet="PaymentStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentStudent_Student" Association="SchoolDBModel.FK_PaymentStudent_Student">
+          <AssociationSet Name="FK_Payment_Student" Association="SchoolDBModel.FK_Payment_Student">
             <End Role="Student" EntitySet="Student" />
-            <End Role="PaymentStudent" EntitySet="PaymentStudent" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_Schedule_Period" Association="SchoolDBModel.FK_Schedule_Period">
             <End Role="Period" EntitySet="Period" />
@@ -830,8 +823,9 @@
           <Property Name="LastDate" Type="DateTime" Precision="0" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GradeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Fee_Grade" FromRole="Fee" ToRole="Grade" />
           <Property Name="Year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Fee_Grade" FromRole="Fee" ToRole="Grade" />
+          <NavigationProperty Name="Payment" Relationship="SchoolDBModel.FK_Payment_Fee" FromRole="Fee" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -853,6 +847,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinishedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Visible" Type="Boolean" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -863,18 +859,10 @@
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <Property Name="Creditor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Debtor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PaymentStudent" Relationship="SchoolDBModel.FK_PaymentStudent_Payment" FromRole="Payment" ToRole="PaymentStudent" />
-        </EntityType>
-        <EntityType Name="PaymentStudent">
-          <Key>
-            <PropertyRef Name="PaymentID" />
-            <PropertyRef Name="StudentID" />
-          </Key>
-          <Property Name="PaymentID" Type="Int32" Nullable="false" />
-          <Property Name="StudentID" Type="Guid" Nullable="false" />
-          <Property Name="Amount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Payment" Relationship="SchoolDBModel.FK_PaymentStudent_Payment" FromRole="PaymentStudent" ToRole="Payment" />
-          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_PaymentStudent_Student" FromRole="PaymentStudent" ToRole="Student" />
+          <Property Name="StudentId" Type="Guid" Nullable="false" />
+          <Property Name="FeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fee" Relationship="SchoolDBModel.FK_Payment_Fee" FromRole="Payment" ToRole="Fee" />
+          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_Payment_Student" FromRole="Payment" ToRole="Student" />
         </EntityType>
         <EntityType Name="Period">
           <Key>
@@ -929,7 +917,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="Student" ToRole="ClassRoom" />
           <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Student" ToRole="Grade" />
-          <NavigationProperty Name="PaymentStudent" Relationship="SchoolDBModel.FK_PaymentStudent_Student" FromRole="Student" ToRole="PaymentStudent" />
+          <NavigationProperty Name="Payment" Relationship="SchoolDBModel.FK_Payment_Student" FromRole="Student" ToRole="Payment" />
           <NavigationProperty Name="StudentExam" Relationship="SchoolDBModel.FK_StudentExam_Student" FromRole="Student" ToRole="StudentExam" />
         </EntityType>
         <EntityType Name="StudentExam">
@@ -1102,6 +1090,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_Fee">
+          <End Type="SchoolDBModel.Fee" Role="Fee" Multiplicity="1" />
+          <End Type="SchoolDBModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Grade">
           <End Type="SchoolDBModel.Grade" Role="Grade" Multiplicity="1" />
           <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="*" />
@@ -1126,27 +1126,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PaymentStudent_Payment">
-          <End Type="SchoolDBModel.Payment" Role="Payment" Multiplicity="1" />
-          <End Type="SchoolDBModel.PaymentStudent" Role="PaymentStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Payment">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PaymentStudent">
-              <PropertyRef Name="PaymentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentStudent_Student">
+        <Association Name="FK_Payment_Student">
           <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="SchoolDBModel.PaymentStudent" Role="PaymentStudent" Multiplicity="*" />
+          <End Type="SchoolDBModel.Payment" Role="Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PaymentStudent">
-              <PropertyRef Name="StudentID" />
+            <Dependent Role="Payment">
+              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1308,6 +1296,8 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="SchoolDBModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="FinishedDate" ColumnName="FinishedDate" />
                 <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1317,20 +1307,13 @@
           <EntitySetMapping Name="Payment">
             <EntityTypeMapping TypeName="SchoolDBModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="FeeId" ColumnName="FeeId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="Debtor" ColumnName="Debtor" />
                 <ScalarProperty Name="Creditor" ColumnName="Creditor" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="PayDate" ColumnName="PayDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentStudent">
-            <EntityTypeMapping TypeName="SchoolDBModel.PaymentStudent">
-              <MappingFragment StoreEntitySet="PaymentStudent">
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

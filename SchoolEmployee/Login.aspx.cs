@@ -41,7 +41,7 @@ namespace SchoolWeb
                 }
                 else
                 {
-                    Response.Redirect("/AdminPages/default");
+                    Response.Redirect("/AdminPages/Home.aspx");
                 }
             }
         }

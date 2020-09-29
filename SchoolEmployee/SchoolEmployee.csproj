@@ -188,6 +188,8 @@
     <Content Include="About.aspx" />
     <Content Include="AdminPages\Employees.aspx" />
     <Content Include="AdminPages\Fees.aspx" />
+    <Content Include="AdminPages\News.aspx" />
+    <Content Include="AdminPages\Payments.aspx" />
     <Content Include="AdminPages\Subjects.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="AdminPages\Home.aspx" />
@@ -279,6 +281,20 @@
     </Compile>
     <Compile Include="AdminPages\Fees.aspx.designer.cs">
       <DependentUpon>Fees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\News.aspx.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\News.aspx.designer.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Payments.aspx.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Payments.aspx.designer.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Subjects.aspx.cs">
       <DependentUpon>Subjects.aspx</DependentUpon>
@@ -389,9 +405,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Payment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PaymentStudent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Period.cs">
