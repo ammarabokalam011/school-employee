@@ -187,8 +187,8 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AdminPages\Employees.aspx" />
-    <Content Include="AdminPages\FeesManagment.aspx" />
-    <Content Include="AdminPages\ManageSubject.aspx" />
+    <Content Include="AdminPages\Fees.aspx" />
+    <Content Include="AdminPages\Subjects.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="AdminPages\Home.aspx" />
     <Content Include="Contact.aspx" />
@@ -273,19 +273,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminPages\FeesManagment.aspx.cs">
-      <DependentUpon>FeesManagment.aspx</DependentUpon>
+    <Compile Include="AdminPages\Fees.aspx.cs">
+      <DependentUpon>Fees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\FeesManagment.aspx.designer.cs">
-      <DependentUpon>FeesManagment.aspx</DependentUpon>
+    <Compile Include="AdminPages\Fees.aspx.designer.cs">
+      <DependentUpon>Fees.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPages\ManageSubject.aspx.cs">
-      <DependentUpon>ManageSubject.aspx</DependentUpon>
+    <Compile Include="AdminPages\Subjects.aspx.cs">
+      <DependentUpon>Subjects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPages\ManageSubject.aspx.designer.cs">
-      <DependentUpon>ManageSubject.aspx</DependentUpon>
+    <Compile Include="AdminPages\Subjects.aspx.designer.cs">
+      <DependentUpon>Subjects.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\EmployeeManager.cs" />
     <Compile Include="AdminPages\Employees.aspx.cs">

@@ -10,7 +10,7 @@
 namespace SchoolWeb.AdminPages {
     
     
-    public partial class FeesManagment {
+    public partial class Fees {
         
         /// <summary>
         /// ASPxGridView1 control.

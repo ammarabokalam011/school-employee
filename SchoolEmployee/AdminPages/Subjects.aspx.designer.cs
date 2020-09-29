@@ -10,7 +10,7 @@
 namespace SchoolWeb.AdminPages {
     
     
-    public partial class ManageSubject {
+    public partial class Subjects {
         
         /// <summary>
         /// ASPxGridView1 control.

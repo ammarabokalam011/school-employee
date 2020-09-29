@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
 {
-    public partial class FeesManagment : System.Web.UI.Page
+    public partial class Fees : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

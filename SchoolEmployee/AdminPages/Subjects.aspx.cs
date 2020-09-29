@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
 {
-    public partial class ManageSubject : System.Web.UI.Page
+    public partial class Subjects : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

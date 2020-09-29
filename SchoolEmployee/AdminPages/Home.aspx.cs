@@ -22,12 +22,12 @@ namespace SchoolWeb.AdminPages
 
         protected void FeeManagment_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/AdminPages/FeesManagment.aspx");
+            Response.Redirect("/AdminPages/Fees.aspx");
         }
 
         protected void ManageSubject_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/AdminPages/ManageSubject.aspx");
+            Response.Redirect("/AdminPages/Subjects.aspx");
         }
     }
 }
