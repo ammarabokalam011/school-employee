@@ -31,11 +31,30 @@ namespace SchoolWeb.AdminPages {
         protected global::DevExpress.Web.ASPxButton FeeManagment;
         
         /// <summary>
-        /// Manage Subject control.
+        /// ManageSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ManageSubject;
+        
+        /// <summary>
+        /// ManageNews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ManageNews;
+        
+        /// <summary>
+        /// ManagePayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton ManagePayment;
     }
 }

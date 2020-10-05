@@ -29,5 +29,15 @@ namespace SchoolWeb.AdminPages
         {
             Response.Redirect("/AdminPages/Subjects.aspx");
         }
+
+        protected void ManageNews_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/AdminPages/News.aspx");
+        }
+
+        protected void ManagePayment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/AdminPages/Payments.aspx");
+        }
     }
 }

@@ -190,7 +190,10 @@
     <Content Include="AdminPages\Fees.aspx" />
     <Content Include="AdminPages\News.aspx" />
     <Content Include="AdminPages\Payments.aspx" />
+    <Content Include="AdminPages\Periods.aspx" />
+    <Content Include="AdminPages\Students.aspx" />
     <Content Include="AdminPages\Subjects.aspx" />
+    <Content Include="Content\dx.generic.custom-scheme.css" />
     <Content Include="Login.aspx" />
     <Content Include="AdminPages\Home.aspx" />
     <Content Include="Contact.aspx" />
@@ -223,6 +226,9 @@
     <Content Include="AdminPages\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\icons\dxicons.ttf" />
+    <Content Include="Content\icons\dxicons.woff" />
+    <Content Include="Content\icons\dxicons.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Model\Model1.Context.tt">
@@ -295,6 +301,20 @@
     </Compile>
     <Compile Include="AdminPages\Payments.aspx.designer.cs">
       <DependentUpon>Payments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Periods.aspx.cs">
+      <DependentUpon>Periods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Periods.aspx.designer.cs">
+      <DependentUpon>Periods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Students.aspx.cs">
+      <DependentUpon>Students.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Students.aspx.designer.cs">
+      <DependentUpon>Students.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\Subjects.aspx.cs">
       <DependentUpon>Subjects.aspx</DependentUpon>

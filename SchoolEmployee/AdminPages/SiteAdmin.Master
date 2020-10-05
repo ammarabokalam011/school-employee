@@ -6,6 +6,7 @@
 <html>
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" href="../Content/dx.generic.custom-scheme.css" type="text/css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

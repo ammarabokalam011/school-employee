@@ -19,7 +19,9 @@
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="3"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Creditor" VisibleIndex="4"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Creditor" VisibleIndex="4">
+                <EditFormSettings Visible="False"/>
+            </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Debtor" VisibleIndex="5"></dx:GridViewDataTextColumn>
             <dx:GridViewDataComboBoxColumn FieldName="StudentId" VisibleIndex="6">
                 <PropertiesComboBox TextField="Username" ValueField="StudentId" ValueType="System.Guid" DataSourceID="SqlDataSource2">
@@ -33,28 +35,16 @@
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' SelectCommand="SELECT ID AS StudentId, Username FROM Student"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' SelectCommand="SELECT ID AS FeeId, Name AS FeeName FROM Fee"></asp:SqlDataSource>
+    <asp:TextBox runat="server" ID="txtUserName" Visible="false"></asp:TextBox>
     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
-        DeleteCommand="DELETE FROM [Payment] WHERE [ID] = @ID"
         InsertCommand="INSERT INTO [Payment] ([PayDate], [Amount], [Creditor], [Debtor], [StudentId], [FeeId]) VALUES (convert(varchar,GETDATE(), 101), @Amount, @Creditor, @Debtor, @StudentId, @FeeId)" 
-        SelectCommand="SELECT * FROM [Payment]" 
-        UpdateCommand="UPDATE [Payment] SET [PayDate] = convert(varchar,GETDATE(), 101), [Amount] = @Amount, [Creditor] = @Creditor, [Debtor] = @Debtor, [StudentId] = @StudentId, [FeeId] = @FeeId WHERE [ID] = @ID">
-        <DeleteParameters>
-            <asp:Parameter Name="ID" Type="Int32"></asp:Parameter>
-        </DeleteParameters>
+        SelectCommand="SELECT * FROM [Payment]" >
         <InsertParameters>
+            <asp:ControlParameter Name="Creditor"  ControlID="txtUserName" Type="String" PropertyName="Text" />
             <asp:Parameter Name="Amount" Type="Int32"></asp:Parameter>
-            <asp:Parameter Name="Creditor" Type="String"></asp:Parameter>
             <asp:Parameter Name="Debtor" Type="String"></asp:Parameter>
-            <asp:Parameter Name="StudentId" Type="Object"></asp:Parameter>
+            <asp:Parameter Name="StudentId" DbType="Guid"></asp:Parameter>
             <asp:Parameter Name="FeeId" Type="Int32"></asp:Parameter>
         </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="Amount" Type="Int32"></asp:Parameter>
-            <asp:Parameter Name="Creditor" Type="String"></asp:Parameter>
-            <asp:Parameter Name="Debtor" Type="String"></asp:Parameter>
-            <asp:Parameter Name="StudentId" Type="Object"></asp:Parameter>
-            <asp:Parameter Name="FeeId" Type="Int32"></asp:Parameter>
-            <asp:Parameter Name="ID" Type="Int32"></asp:Parameter>
-        </UpdateParameters>
     </asp:SqlDataSource>
 </asp:Content>
