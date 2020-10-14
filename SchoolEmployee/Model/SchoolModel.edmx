@@ -121,7 +121,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Day" Type="tinyint" Nullable="false" />
           <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
@@ -143,6 +142,7 @@
           <Property Name="SubjectId" Type="int" Nullable="false" />
           <Property Name="PeriodId" Type="int" Nullable="false" />
           <Property Name="TeacherId" Type="int" />
+          <Property Name="Day" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -159,7 +159,7 @@
           <Property Name="BusRegister" Type="bit" />
           <Property Name="GradeId" Type="int" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentExam">
           <Key>
@@ -184,18 +184,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Detail" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TeacherClassRoom">
-          <Key>
-            <PropertyRef Name="TeacherId" />
-            <PropertyRef Name="ClassroomId" />
-          </Key>
-          <Property Name="TeacherId" Type="int" Nullable="false" />
-          <Property Name="ClassroomId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TeacherSubject">
           <Key>
@@ -457,30 +449,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TeacherClassRoom_ClassRoom">
-          <End Role="ClassRoom" Type="Self.ClassRoom" Multiplicity="1" />
-          <End Role="TeacherClassRoom" Type="Self.TeacherClassRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClassRoom">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TeacherClassRoom">
-              <PropertyRef Name="ClassroomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TeacherClassRoom_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="TeacherClassRoom" Type="Self.TeacherClassRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TeacherClassRoom">
-              <PropertyRef Name="TeacherId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TeacherSubject_Subject">
           <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
           <End Role="TeacherSubject" Type="Self.TeacherSubject" Multiplicity="*" />
@@ -524,7 +492,6 @@
           <EntitySet Name="StudentExam" EntityType="Self.StudentExam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TeacherClassRoom" EntityType="Self.TeacherClassRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeacherSubject" EntityType="Self.TeacherSubject" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Classfication_Grade" Association="Self.FK_Classfication_Grade">
             <End Role="Classfication" EntitySet="Classfication" />
@@ -609,14 +576,6 @@
           <AssociationSet Name="FK_Subject_Grade" Association="Self.FK_Subject_Grade">
             <End Role="Grade" EntitySet="Grade" />
             <End Role="Subject" EntitySet="Subject" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeacherClassRoom_ClassRoom" Association="Self.FK_TeacherClassRoom_ClassRoom">
-            <End Role="ClassRoom" EntitySet="ClassRoom" />
-            <End Role="TeacherClassRoom" EntitySet="TeacherClassRoom" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeacherClassRoom_Teacher" Association="Self.FK_TeacherClassRoom_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
-            <End Role="TeacherClassRoom" EntitySet="TeacherClassRoom" />
           </AssociationSet>
           <AssociationSet Name="FK_TeacherSubject_Subject" Association="Self.FK_TeacherSubject_Subject">
             <End Role="Subject" EntitySet="Subject" />
@@ -729,10 +688,6 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Permission" EntitySet="Permission" />
           </AssociationSet>
-          <AssociationSet Name="TeacherClassRoom" Association="SchoolDBModel.TeacherClassRoom">
-            <End Role="ClassRoom" EntitySet="ClassRoom" />
-            <End Role="Teacher" EntitySet="Teacher" />
-          </AssociationSet>
           <AssociationSet Name="TeacherSubject" Association="SchoolDBModel.TeacherSubject">
             <End Role="Subject" EntitySet="Subject" />
             <End Role="Teacher" EntitySet="Teacher" />
@@ -768,7 +723,6 @@
           <NavigationProperty Name="Schedule" Relationship="SchoolDBModel.FK_Schedule_ClassRoom" FromRole="ClassRoom" ToRole="Schedule" />
           <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="ClassRoom" ToRole="Student" />
           <NavigationProperty Name="StudentExam" Relationship="SchoolDBModel.FK_StudentExam_ClassRoom" FromRole="ClassRoom" ToRole="StudentExam" />
-          <NavigationProperty Name="Teacher" Relationship="SchoolDBModel.TeacherClassRoom" FromRole="ClassRoom" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -869,7 +823,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Day" Type="Byte" Nullable="false" />
           <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Exam" Relationship="SchoolDBModel.FK_Exam_Period" FromRole="Period" ToRole="Exam" />
@@ -894,6 +847,7 @@
           <Property Name="SubjectId" Type="Int32" Nullable="false" />
           <Property Name="PeriodId" Type="Int32" Nullable="false" />
           <Property Name="TeacherId" Type="Int32" />
+          <Property Name="Day" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_Schedule_ClassRoom" FromRole="Schedule" ToRole="ClassRoom" />
           <NavigationProperty Name="Period" Relationship="SchoolDBModel.FK_Schedule_Period" FromRole="Schedule" ToRole="Period" />
           <NavigationProperty Name="Subject" Relationship="SchoolDBModel.FK_Schedule_Subject" FromRole="Schedule" ToRole="Subject" />
@@ -914,7 +868,7 @@
           <Property Name="BusRegister" Type="Boolean" />
           <Property Name="GradeId" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.FK_Student_ClassRoom" FromRole="Student" ToRole="ClassRoom" />
           <NavigationProperty Name="Grade" Relationship="SchoolDBModel.FK_Student_Grade" FromRole="Student" ToRole="Grade" />
           <NavigationProperty Name="Payment" Relationship="SchoolDBModel.FK_Payment_Student" FromRole="Student" ToRole="Payment" />
@@ -950,12 +904,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Detail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Schedule" Relationship="SchoolDBModel.FK_Schedule_Teacher" FromRole="Teacher" ToRole="Schedule" />
-          <NavigationProperty Name="ClassRoom" Relationship="SchoolDBModel.TeacherClassRoom" FromRole="Teacher" ToRole="ClassRoom" />
           <NavigationProperty Name="Subject" Relationship="SchoolDBModel.TeacherSubject" FromRole="Teacher" ToRole="Subject" />
         </EntityType>
         <Association Name="FK_Classfication_Grade">
@@ -1190,10 +1143,6 @@
           <End Type="SchoolDBModel.Employee" Role="Employee" Multiplicity="*" />
           <End Type="SchoolDBModel.Permission" Role="Permission" Multiplicity="*" />
         </Association>
-        <Association Name="TeacherClassRoom">
-          <End Type="SchoolDBModel.ClassRoom" Role="ClassRoom" Multiplicity="*" />
-          <End Type="SchoolDBModel.Teacher" Role="Teacher" Multiplicity="*" />
-        </Association>
         <Association Name="TeacherSubject">
           <End Type="SchoolDBModel.Subject" Role="Subject" Multiplicity="*" />
           <End Type="SchoolDBModel.Teacher" Role="Teacher" Multiplicity="*" />
@@ -1322,7 +1271,6 @@
               <MappingFragment StoreEntitySet="Period">
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1339,6 +1287,7 @@
           <EntitySetMapping Name="Schedule">
             <EntityTypeMapping TypeName="SchoolDBModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="Day" ColumnName="Day" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
                 <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
@@ -1399,14 +1348,6 @@
             </EndProperty>
             <EndProperty Name="Employee">
               <ScalarProperty Name="ID" ColumnName="EmployeeId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TeacherClassRoom" TypeName="SchoolDBModel.TeacherClassRoom" StoreEntitySet="TeacherClassRoom">
-            <EndProperty Name="Teacher">
-              <ScalarProperty Name="ID" ColumnName="TeacherId" />
-            </EndProperty>
-            <EndProperty Name="ClassRoom">
-              <ScalarProperty Name="ID" ColumnName="ClassroomId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="TeacherSubject" TypeName="SchoolDBModel.TeacherSubject" StoreEntitySet="TeacherSubject">

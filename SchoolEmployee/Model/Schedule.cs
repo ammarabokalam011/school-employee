@@ -14,6 +14,7 @@ namespace SchoolWeb.Model
     
     public partial class Schedule
     {
+        public int Day { get; set; }
         public int ClassRoomId { get; set; }
         public int SubjectId { get; set; }
         public int PeriodId { get; set; }

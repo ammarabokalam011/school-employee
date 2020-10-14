@@ -27,5 +27,18 @@ namespace SchoolWeb.App_Code
                 return builder.ToString().ToUpper();
             }
         }
+
+        internal static Dictionary<int,string> GetDaysNames()
+        {
+            Dictionary<int, string> daysName = new Dictionary<int, string>();
+            daysName.Add(0,"Saturday");
+            daysName.Add(1,"Sunday");
+            daysName.Add(2,"Monday");
+            daysName.Add(3,"Tuesday");
+            daysName.Add(4,"Wednesday");
+            daysName.Add(5,"Thursday");
+            daysName.Add(6,"Friday");
+            return daysName;
+        }
     }
 }
