@@ -11,50 +11,5 @@ namespace SchoolWeb.AdminPages {
     
     
     public partial class Home {
-        
-        /// <summary>
-        /// EmployeeManage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton EmployeeManage;
-        
-        /// <summary>
-        /// FeeManagment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton FeeManagment;
-        
-        /// <summary>
-        /// ManageSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton ManageSubject;
-        
-        /// <summary>
-        /// ManageNews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton ManageNews;
-        
-        /// <summary>
-        /// ManagePayment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton ManagePayment;
     }
 }

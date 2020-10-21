@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8411ccb20ed545e99c755e4b4efcdf86" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolDBModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Classfication" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.ClassRoom" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Employee" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.EmployeeLog" Width="1.5" PointX="12.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Exam" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Fee" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Grade" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.News" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Payment" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Period" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Permission" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Registration" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Schedule" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.StudentExam" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Subject" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="7.5" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="SchoolDBModel.FK_Classfication_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_ClassRoom_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Exam_ClassRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Schedule_ClassRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Student_ClassRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_EmployeeLog_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Registration_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Exam_Period" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Exam_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_StudentExam_Exam" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Fee_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Payment_Fee" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Registration_Fee" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Student_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Subject_Grade" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Payment_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Schedule_Period" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Registration_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Schedule_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_Schedule_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.FK_StudentExam_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.EmployeePermission" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolDBModel.TeacherSubject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

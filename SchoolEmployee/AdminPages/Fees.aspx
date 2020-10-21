@@ -7,20 +7,19 @@
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID">
         <Settings ShowGroupPanel="True" ShowFilterRow="True"></Settings>
         <Columns>
-            <dx:GridViewCommandColumn  VisibleIndex="0" ShowDeleteButton="True" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="2">
+            <dx:GridViewCommandColumn  VisibleIndex="0"  ShowEditButton="True" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
+            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="1">
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="3"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="WarrningDate" VisibleIndex="4"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataDateColumn FieldName="LastDate" VisibleIndex="5"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="6"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn FieldName="GradeId" VisibleIndex="8">
+            <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="2"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataDateColumn FieldName="WarrningDate" VisibleIndex="3"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataDateColumn FieldName="LastDate" VisibleIndex="4"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="5"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="6"></dx:GridViewDataTextColumn>
+            <dx:GridViewDataComboBoxColumn FieldName="GradeId" Caption="Grade" VisibleIndex="7">
                 <PropertiesComboBox TextField="GradeName" ValueField="GradeId1" ValueType="System.Int32" DataSourceID="SqlDataSource2">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="7"></dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="1"></dx:GridViewCommandColumn>
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' 

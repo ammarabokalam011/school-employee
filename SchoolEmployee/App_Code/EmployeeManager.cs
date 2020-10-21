@@ -22,6 +22,24 @@ namespace SchoolWeb.App_Code
                 }
             }
         }
+
+        internal static Employee GetEmployeeByUserName(string name)
+        {
+            Employee employee = null;
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    employee = db.Employee.Where(x => x.Username == name).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    String.Compare("", "");
+                }
+            }
+            return employee;
+        }
+
         public static Employee GetEmployeeById(Guid Id)
         {
             Employee employee = null;

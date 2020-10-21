@@ -14,7 +14,7 @@ namespace SchoolWeb.App_Code
             Password = Helper.HashSHA256(Password);
             using(SchoolDBEntities db=new SchoolDBEntities())
             {
-                //db.Employee.Where()
+                employee=db.Employee.Where(x => x.Username == UserName && x.Password == Password).FirstOrDefault();
             }
             if(UserName=="SuperSuperAdmin"&& Password == "1886B14C35EF70E25F353A03EBD2481437ACADD59B0FA2342916576687087D20")//password Admin1Super2Pass3
             {

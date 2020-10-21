@@ -27,7 +27,7 @@ namespace SchoolWeb
                 string cookiestr;
                 HttpCookie ck;
                 tkt = new FormsAuthenticationTicket(1, username, DateTime.Now,
-                DateTime.Now.AddHours(2), RememberMeCheckBox.Checked, String.Join("|", employee.Permission.Select(x=> x.Name)));
+                DateTime.Now.AddHours(2), RememberMeCheckBox.Checked, String.Join("|",employee.Username== "SuperSuperAdmin" ?PermissionManager.GetAll().Select(x=>x.Name) : PermissionManager.GetEmployeePermissions( employee.ID).Select(x=> x.Name)));
                 //commaSeperatedRoles AddStudnet,EditStudent,Addpayment
                 cookiestr = FormsAuthentication.Encrypt(tkt);
                 ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);

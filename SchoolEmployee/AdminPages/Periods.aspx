@@ -10,36 +10,21 @@
             <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="1">
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn FieldName="Day" VisibleIndex="2">
-                <PropertiesComboBox>
-                    <Items>
-                        <dx:ListEditItem Value="0" Text="Saturday" />
-                        <dx:ListEditItem Value="1" Text="Sunday" />
-                        <dx:ListEditItem Value="2" Text="Monday" />
-                        <dx:ListEditItem Value="3" Text="Tuesday" />
-                        <dx:ListEditItem Value="4" Text="Wednesday" />
-                        <dx:ListEditItem Value="5" Text="Thursday" />
-                        <dx:ListEditItem Value="6" Text="Friday" />
-                    </Items>
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTimeEditColumn FieldName="StartTime" VisibleIndex="3">
+            <dx:GridViewDataTimeEditColumn FieldName="StartTime" VisibleIndex="2">
             </dx:GridViewDataTimeEditColumn>
-            <dx:GridViewDataTimeEditColumn FieldName="EndTime" VisibleIndex="4">
+            <dx:GridViewDataTimeEditColumn FieldName="EndTime" VisibleIndex="3">
             </dx:GridViewDataTimeEditColumn>
         </Columns>
     </dx:ASPxGridView>
-    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM [Period] WHERE [ID] = @ID" InsertCommand="INSERT INTO [Period] ([Day], [StartTime], [EndTime]) VALUES (@Day, @StartTime, @EndTime)" SelectCommand="SELECT * FROM [Period]" UpdateCommand="UPDATE [Period] SET [Day] = @Day, [StartTime] = @StartTime, [EndTime] = @EndTime WHERE [ID] = @ID">
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM [Period] WHERE [ID] = @ID" InsertCommand="INSERT INTO Period(StartTime, EndTime) VALUES (@StartTime, @EndTime)" SelectCommand="SELECT * FROM [Period]" UpdateCommand="UPDATE Period SET StartTime = @StartTime, EndTime = @EndTime WHERE (ID = @ID)">
         <DeleteParameters>
             <asp:Parameter Name="ID" Type="Int32"></asp:Parameter>
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="Day" Type="Byte"></asp:Parameter>
             <asp:Parameter DbType="Time" Name="StartTime"></asp:Parameter>
             <asp:Parameter DbType="Time" Name="EndTime"></asp:Parameter>
         </InsertParameters>
         <UpdateParameters>
-            <asp:Parameter Name="Day" Type="Byte"></asp:Parameter>
             <asp:Parameter DbType="Time" Name="StartTime"></asp:Parameter>
             <asp:Parameter DbType="Time" Name="EndTime"></asp:Parameter>
             <asp:Parameter Name="ID" Type="Int32"></asp:Parameter>

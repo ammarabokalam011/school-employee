@@ -3,7 +3,7 @@
 <html>
 <head runat="server">
     <title></title>
-    
+
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../Content/fonts.css" rel="stylesheet">
@@ -57,19 +57,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="Subjects.aspx">Subject</a>
                             <a class="collapse-item" href="ClassRooms.aspx">Classrooms</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-fw  fa-calendar-times"></i>
-                        <span>Structure</span>
-                    </a>
-                    <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="Periods.aspx">Periods</a>
-                            <a class="collapse-item" href="Schedules.aspx">Schedules</a>
                         </div>
                     </div>
                 </li>
