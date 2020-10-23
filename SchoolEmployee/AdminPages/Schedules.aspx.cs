@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
@@ -14,6 +15,9 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!User.IsInRole("ManageClassRoom"))
+                Response.Redirect("~/AdminPages/");
             bool edit=false;
             int classRoomId=-1;
             try
@@ -90,7 +94,39 @@ namespace SchoolWeb.AdminPages
             }
             else
             {
-                 schedules.GroupBy(x => x.Day);
+
+                foreach (KeyValuePair<int, string> entry in daysName)
+                {
+                    TableRow row = new TableRow();
+                    int dayId = entry.Key;
+                    string dayName = entry.Value;
+                    TableCell firstCell = new TableCell();
+                    firstCell.Text = dayName;
+                    row.Cells.Add(firstCell);
+                    periods.ForEach(x => {
+                        TableCell cell = new TableCell();
+                        ASPxLabel textBoxSubject = new ASPxLabel();
+                        ASPxLabel textBoxTeacher = new ASPxLabel();
+                        if (schTable.ContainsKey(dayId))
+                        {
+                            if (schTable[dayId].ContainsKey(x.ID))
+                            {
+                                if (schTable[dayId][x.ID] != null)
+                                {
+                                    textBoxSubject.Text = SubjectManager.GetSubjectNames( schTable[dayId][x.ID].SubjectId);
+                                    textBoxTeacher.Text = TeacherManager.GetTeacherName(schTable[dayId][x.ID].TeacherId);
+                                }
+                                     
+                            }
+                        }
+                        cell.Controls.Add(textBoxSubject);
+                        cell.Controls.Add(new Literal() { Text = "<br/>" });
+                        cell.Controls.Add(textBoxTeacher);
+                        row.Cells.Add(cell);
+                    });
+                    Table1.Rows.Add(row);
+                }
+
 
             }
         }

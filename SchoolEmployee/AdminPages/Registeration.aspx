@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="FeeId" Theme="Material">
+    <dx:ASPxGridView ID="ASPxGridView1" runat="server" OnRowInserted="ASPxGridView1_RowInserted" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="FeeId" Theme="Material">
         <Settings ShowFilterRow="True"></Settings>
         <Columns>
             <dx:GridViewCommandColumn ShowNewButtonInHeader="True" VisibleIndex="0"></dx:GridViewCommandColumn>

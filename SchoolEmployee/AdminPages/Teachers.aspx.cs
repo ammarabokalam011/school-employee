@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.Web;
+using SchoolWeb.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,22 +13,32 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!User.IsInRole("ManageTeacher"))
+                Response.Redirect("~/AdminPages/");
+
 
         }
-
-        protected void ASPxGridView1_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)
+        protected void EditSubjectBtn_Click(object sender, EventArgs e)
         {
-            sender.ToString();
+            ASPxButton btn = (ASPxButton)sender;
+            GridViewDataItemTemplateContainer container = (GridViewDataItemTemplateContainer)btn.NamingContainer;
+            int id = int.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
+            Session["TeacherId"] = id;
+            MultiView1.ActiveViewIndex = 1;
+            GridLookup.Value= SubjectManager.GetTeacherSubjectsIds(id);
         }
 
-        protected void ASPxGridView1_RowUpdating(object sender, DevExpress.Web.Data.ASPxDataUpdatingEventArgs e)
+        protected void ASPxButtonBack_Click(object sender, EventArgs e)
         {
-            sender.ToString();
+            Session["TeacherId"] = "";
+            ASPxGridView1.DataBind();
+            MultiView1.ActiveViewIndex = 0;
         }
 
-        protected void ASPxGridView1_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
+        protected void GridLookup_ValueChanged(object sender, EventArgs e)
         {
-            sender.ToString();
+            int[] ids =((sender as DevExpress.Web.ASPxGridLookup).GridView.GetSelectedFieldValues("SubjectId")).Select(Convert.ToInt32).ToArray();
+            SubjectManager.EditTeacherSubject(ids,int.Parse(Session["TeacherId"].ToString()));
         }
     }
 }

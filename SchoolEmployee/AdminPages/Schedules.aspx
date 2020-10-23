@@ -52,7 +52,7 @@
                     }
 
             table.blueTable tfoot td {
-                font-size: 14px;
+                font-size: 10px;
             }
 
             table.blueTable tfoot .links {
@@ -73,7 +73,7 @@
         CssClass="blueTable">
     </asp:Table>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
-        SelectCommand="SELECT Teacher.FirstName + Teacher.LastName AS TeacherName, Subject.Name AS SubjectName, Subject.ID AS SubjectId, Teacher.ID AS TeacherId FROM Subject left JOIN TeacherSubject ON Subject.ID = TeacherSubject.SubjectId left JOIN Teacher ON Teacher.ID = TeacherSubject.TeacherId WHERE (Subject.GradeId = @GradeId)">
+        SelectCommand="SELECT Teacher.FirstName +' '+ Teacher.LastName AS TeacherName, Subject.Name AS SubjectName, Subject.ID AS SubjectId, Teacher.ID AS TeacherId FROM Subject left JOIN TeacherSubject ON Subject.ID = TeacherSubject.SubjectId left JOIN Teacher ON Teacher.ID = TeacherSubject.TeacherId WHERE (Subject.GradeId = @GradeId)">
         <SelectParameters>
             <asp:SessionParameter SessionField="GradeId" Name="GradeId" DefaultValue="-1"></asp:SessionParameter>
         </SelectParameters>

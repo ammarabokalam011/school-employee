@@ -7,13 +7,13 @@
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" Theme="Material" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" EnableTheming="True" KeyFieldName="ID">
         <Columns>
             <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True" ShowDeleteButton="True"></dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="1">
+            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="1">
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTimeEditColumn FieldName="StartTime" VisibleIndex="2">
-            </dx:GridViewDataTimeEditColumn>
-            <dx:GridViewDataTimeEditColumn FieldName="EndTime" VisibleIndex="3">
-            </dx:GridViewDataTimeEditColumn>
+            <dx:GridViewDataTextColumn FieldName="StartTime" VisibleIndex="2">
+                
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn FieldName="EndTime" VisibleIndex="3"></dx:GridViewDataTextColumn>
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM [Period] WHERE [ID] = @ID" InsertCommand="INSERT INTO Period(StartTime, EndTime) VALUES (@StartTime, @EndTime)" SelectCommand="SELECT * FROM [Period]" UpdateCommand="UPDATE Period SET StartTime = @StartTime, EndTime = @EndTime WHERE (ID = @ID)">

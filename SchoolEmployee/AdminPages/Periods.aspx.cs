@@ -11,7 +11,8 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!User.IsInRole("ManagePeriod"))
+                Response.Redirect("~/AdminPages/");
         }
     }
 }

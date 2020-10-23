@@ -41,6 +41,24 @@ namespace SchoolWeb.App_Code
             }
             return null;
         }
+
+        public static Student GetStudent(Guid studentId)
+        {
+            Student student = new Student();
+            using (SchoolDBEntities dBEntities = new SchoolDBEntities())
+            {
+                try
+                {
+                    
+                    student = dBEntities.Student.Where(x => x.ID == studentId).FirstOrDefault();
+                }catch(Exception e)
+                {
+
+                }
+            }
+            return student;
+        }
+
         internal static bool RestPassword(Guid guid)
         {
             using (SchoolDBEntities db = new SchoolDBEntities())
@@ -68,7 +86,7 @@ namespace SchoolWeb.App_Code
             }
         }
 
-        internal static bool Add(string firstName, string secondName, string fatherName, string motherName, string userName, int discount, DateTime birthdate, int classroomd, int gradeId)
+        internal static bool Add(string firstName, string secondName, string fatherName, string motherName, string userName, int discount, DateTime birthdate, int? classroomd, int gradeId)
         {
             using (SchoolDBEntities db = new SchoolDBEntities())
             {

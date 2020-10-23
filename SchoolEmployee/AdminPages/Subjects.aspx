@@ -9,7 +9,7 @@
 
         <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
         <Columns>
-            <dx:GridViewCommandColumn VisibleIndex="1" ShowEditButton="True" ShowNewButtonInHeader="True" ShowClearFilterButton="True" SelectAllCheckboxMode="Page" ShowSelectCheckbox="True"></dx:GridViewCommandColumn>
+            <dx:GridViewCommandColumn VisibleIndex="1" ShowEditButton="True" ShowNewButtonInHeader="True" ></dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn FieldName="ClassficationID" Visible="false" ReadOnly="True" VisibleIndex="2">
                 <EditFormSettings Visible="False" ></EditFormSettings>
             </dx:GridViewDataTextColumn>
@@ -32,6 +32,7 @@
                             <EditFormSettings Visible="False"></EditFormSettings>
                         </dx:GridViewDataTextColumn>
                         <dx:GridViewDataTextColumn FieldName="GradeName" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="GradeNum" VisibleIndex="4"></dx:GridViewDataTextColumn>
                     </Columns>
                     <Templates>
                         <DetailRow>
@@ -71,23 +72,25 @@
                     <SettingsDetail ShowDetailRow="true" AllowOnlyOneMasterRowExpanded="true"/>
                 </dx:ASPxGridView>
 
-                <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' 
-                    DeleteCommand="DELETE FROM Grade WHERE (ID = @GradeID)" 
-                    InsertCommand="INSERT INTO Grade(Name, ClassficationID) VALUES (@GradeName, @ClassficationID)" 
-                    SelectCommand="SELECT ID AS GradeID, Name AS GradeName FROM Grade WHERE (ClassficationID = @ClassficationID)" 
-                    UpdateCommand="UPDATE Grade SET Name = @GradeName WHERE (ID = @GradeID)">
+                <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
+                    DeleteCommand="DELETE FROM Grade WHERE (ID = @GradeID)"
+                    InsertCommand="INSERT INTO Grade(Name, ClassficationID, Num) VALUES (@GradeName, @ClassficationID, @GradeNum)"
+                    SelectCommand="SELECT ID AS GradeID, Name AS GradeName, Num AS GradeNum FROM Grade WHERE (ClassficationID = @ClassficationID)"
+                    UpdateCommand="UPDATE Grade SET Name = @GradeName, Num = @GradeNum WHERE (ID = @GradeID)">
                     <DeleteParameters>
                         <asp:Parameter Name="GradeID"></asp:Parameter>
                     </DeleteParameters>
                     <InsertParameters>
                         <asp:Parameter Name="GradeName"></asp:Parameter>
                         <asp:SessionParameter SessionField="ClassficationID" DefaultValue="-1" Name="ClassficationID"></asp:SessionParameter>
+                        <asp:Parameter Name="GradeNum"></asp:Parameter>
                     </InsertParameters>
                     <SelectParameters>
                         <asp:SessionParameter SessionField="ClassficationID" DefaultValue="-1" Name="ClassficationID"></asp:SessionParameter>
                     </SelectParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="GradeName"></asp:Parameter>
+                        <asp:Parameter Name="GradeNum"></asp:Parameter>
                         <asp:Parameter Name="GradeID"></asp:Parameter>
                     </UpdateParameters>
                 </asp:SqlDataSource>

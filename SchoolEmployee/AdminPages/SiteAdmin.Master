@@ -79,6 +79,27 @@
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>News</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Articals.aspx">
+                        <i class="fas fa-fw fa-newspaper"></i>
+                        <span>Articals</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Registeration.aspx">
+                        <i class="fas fa-fw fa-plus-circle"></i>
+                        <span>Registeration</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ChangePassword.aspx">
+                        <i class="fas fa-fw fa-key"></i>
+                        <span>Change Password</span></a>
+                </li>
+                <li runat="server"  class="nav-item">
+                    <asp:LinkButton ID="btnLogOut" OnClick="btnLogOut_Click" class="nav-link" runat="server">
+                        <i class="fas fa-fw fa-sign-out-alt"></i>
+                        <span>LogOut</span>
+                    </asp:LinkButton>
+                </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 

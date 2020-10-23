@@ -12,6 +12,8 @@ namespace SchoolWeb.AdminPages
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!User.IsInRole("ManageFee"))
+                Response.Redirect("~/AdminPages/");
         }
     }
 }

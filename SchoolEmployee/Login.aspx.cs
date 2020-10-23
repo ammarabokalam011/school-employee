@@ -16,23 +16,29 @@ namespace SchoolWeb
         {
 
         }
-
-        protected void Button1_Click(object sender, EventArgs e)
+        
+        protected void Button1_Click1(object sender, EventArgs e)
         {
-            string username = UserName.Text,password= Password.Text;
-            Employee employee= AuthorizationManager.AuthorizeEmployee(username,password );
+            
+        }
+
+        protected void myBtn_Click(object sender, EventArgs e)
+        {
+            string username = txtUserName.Value, password = txtPassword.Value;
+            Employee employee = AuthorizationManager.AuthorizeEmployee(username, password);
             if (employee != null)
             {
                 FormsAuthenticationTicket tkt;
                 string cookiestr;
                 HttpCookie ck;
                 tkt = new FormsAuthenticationTicket(1, username, DateTime.Now,
-                DateTime.Now.AddHours(2), RememberMeCheckBox.Checked, String.Join("|",employee.Username== "SuperSuperAdmin" ?PermissionManager.GetAll().Select(x=>x.Name) : PermissionManager.GetEmployeePermissions( employee.ID).Select(x=> x.Name)));
+                DateTime.Now.AddHours(2), false,
+                String.Join("|", employee.Username == "SuperSuperAdmin" ? PermissionManager.GetAll().Select(x => x.Name) : PermissionManager.GetEmployeePermissions(employee.ID).Select(x => x.Name)));
                 //commaSeperatedRoles AddStudnet,EditStudent,Addpayment
                 cookiestr = FormsAuthentication.Encrypt(tkt);
                 ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
-                if (RememberMeCheckBox.Checked)
-                    ck.Expires = tkt.Expiration;
+                
+                    ;
                 ck.Path = FormsAuthentication.FormsCookiePath;
                 Response.Cookies.Add(ck);
                 if (Request.QueryString["ReturnUrl"] != null)

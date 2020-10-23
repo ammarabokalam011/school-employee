@@ -14,6 +14,8 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!User.IsInRole("ManageStudent"))
+                Response.Redirect("~/AdminPages/");
 
         }
         protected void RestPasswordBtn_Click(object sender, EventArgs e)
@@ -47,12 +49,7 @@ namespace SchoolWeb.AdminPages
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void BackBtn_Click(object sender, EventArgs e)
-        {
-            Session["StudentId"] = "";
-            MultiView1.ActiveViewIndex = 0;
-        }
-
+        
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string firstName = txtFirstName.Text;
@@ -62,7 +59,7 @@ namespace SchoolWeb.AdminPages
             string userName = txtUsername.Text;
             int discount = int.Parse(txtDiscount.Text);
             DateTime birthdate = datetxtBirthDate.Date;
-            int classroomd = (int)txtClassRoomId.Value;
+            int? classroomd = (int?)txtClassRoomId.Value;
             int gradeId = (int)txtGradeId.Value;
             if (StudentManager.Add(firstName, secondName, fatherName, motherName, userName, discount, birthdate, classroomd, gradeId))
             {
@@ -73,6 +70,17 @@ namespace SchoolWeb.AdminPages
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Failed')", true);
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Session["StudentId"] = "";
+            MultiView1.ActiveViewIndex = 0;
+        }
+        
+        protected void txtGradeId_ValueChanged(object sender, EventArgs e)
+        {
+            txtClassRoomId.DataBind();
         }
     }
 }

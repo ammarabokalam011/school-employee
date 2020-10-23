@@ -12,11 +12,21 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!User.IsInRole("ManageRegisteration"))
+                Response.Redirect("~/AdminPages/");
             if (User.Identity.Name != null)
             {
                 SqlDataSource1.InsertParameters.Add(new Parameter("EmployeeId", System.Data.DbType.Guid,
                     EmployeeManager.GetEmployeeByUserName(User.Identity.Name).ID.ToString()));
             }
+        }
+
+        protected void ASPxGridView1_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
+        {
+            int feeId =(int) e.NewValues[0];
+            Guid studentId = (Guid)e.NewValues[1];
+            PaymentsManager.AddRegisterPayment(feeId,studentId);
         }
     }
 }

@@ -8,7 +8,7 @@
         <Columns>
             <dx:GridViewCommandColumn ShowEditButton="True" VisibleIndex="0" ShowNewButtonInHeader="True"></dx:GridViewCommandColumn>
             <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="1"></dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="2">
+            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" Visible="false" VisibleIndex="2">
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="3"></dx:GridViewDataTextColumn>

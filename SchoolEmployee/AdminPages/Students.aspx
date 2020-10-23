@@ -104,6 +104,20 @@
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
+                            <dx:LayoutItem Caption="Grade" FieldName="GradeId" ColSpan="1">
+                                <LayoutItemNestedControlCollection>
+                                    <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:ASPxComboBox OnValueChanged="txtGradeId_ValueChanged" EnableCallbackMode="true"  AutoPostBack="true" runat="server" ID="txtGradeId"  Theme="Material" ValueType="System.Int32"  ValueField="ID" TextField="Name" DataSourceID="SqlDataSource1" EnableTheming="True">
+                                            <Columns>
+                                                <dx:ListBoxColumn Visible="false" Caption="ID" FieldName="ID" Name="ID"></dx:ListBoxColumn>
+                                                <dx:ListBoxColumn Caption="Name" FieldName="Name" Name="Name"></dx:ListBoxColumn>
+                                            </Columns>
+                                        </dx:ASPxComboBox>
+                                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
+                                            SelectCommand="SELECT [Name], [ID] FROM [Grade]"></asp:SqlDataSource>
+                                    </dx:LayoutItemNestedControlContainer>
+                                </LayoutItemNestedControlCollection>
+                            </dx:LayoutItem>
                             <dx:LayoutItem Caption="Class Room" FieldName="ClassRoomId" ColSpan="1">
                                 <LayoutItemNestedControlCollection>
                                     <dx:LayoutItemNestedControlContainer runat="server">
@@ -113,22 +127,14 @@
                                                 <dx:ListBoxColumn Caption="Name" FieldName="Name" Name="ID"></dx:ListBoxColumn>
                                             </Columns>
                                         </dx:ASPxComboBox>
-                                        <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' 
-                                            SelectCommand="SELECT [ID], [Name] FROM [ClassRoom]"></asp:SqlDataSource>
-                                    </dx:LayoutItemNestedControlContainer>
-                                </LayoutItemNestedControlCollection>
-                            </dx:LayoutItem>
-                            <dx:LayoutItem Caption="Grade" FieldName="GradeId" ColSpan="1">
-                                <LayoutItemNestedControlCollection>
-                                    <dx:LayoutItemNestedControlContainer runat="server">
-                                        <dx:ASPxComboBox runat="server" ID="txtGradeId"  Theme="Material" ValueType="System.Int32"  ValueField="ID" TextField="Name" DataSourceID="SqlDataSource1" EnableTheming="True">
-                                            <Columns>
-                                                <dx:ListBoxColumn Visible="false" Caption="ID" FieldName="ID" Name="ID"></dx:ListBoxColumn>
-                                                <dx:ListBoxColumn Caption="Name" FieldName="Name" Name="Name"></dx:ListBoxColumn>
-                                            </Columns>
-                                        </dx:ASPxComboBox>
-                                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
-                                            SelectCommand="SELECT [Name], [ID] FROM [Grade]"></asp:SqlDataSource>
+                                        <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
+                                            SelectCommand="SELECT ID, Name FROM ClassRoom WHERE (GradeID = @GradeId)">
+                                            <SelectParameters>
+                                                <asp:ControlParameter ControlID="txtGradeId" PropertyName="Value" Type="Decimal" ConvertEmptyStringToNull="true" DefaultValue="-1" Name="GradeId"></asp:ControlParameter>
+                                            </SelectParameters>
+                                            <SelectParameters>
+                                            </SelectParameters>
+                                        </asp:SqlDataSource>
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
@@ -143,10 +149,17 @@
                             </dx:LayoutItem>
                         </Items>
                     </dx:LayoutGroup>
-                    <dx:LayoutItem ColSpan="2" ColumnSpan="2" Caption="">
+                    <dx:LayoutItem ColSpan="1" Caption="">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxButton runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" UseSubmitBehavior="false"></dx:ASPxButton>
+                            </dx:LayoutItemNestedControlContainer>
+                        </LayoutItemNestedControlCollection>
+                    </dx:LayoutItem>
+                    <dx:LayoutItem ColSpan="2" Caption="">
+                        <LayoutItemNestedControlCollection>
+                            <dx:LayoutItemNestedControlContainer runat="server">
+                                <dx:ASPxButton runat="server" ID="btnBack" Text="Back" OnClick="btnBack_Click" AutoPostBack="false" Theme="Material" CausesValidation="false" UseSubmitBehavior="false"></dx:ASPxButton>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>

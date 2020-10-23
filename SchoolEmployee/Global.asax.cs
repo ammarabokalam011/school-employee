@@ -23,7 +23,16 @@ namespace SchoolWeb
         {
             base.AuthenticateRequest += OnAuthenticateRequest;
         }
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
 
+            if (exc is HttpUnhandledException)
+            {
+                // Pass the error on to the error page.
+                //Server.Transfer("Home.aspx", true);
+            }
+        }
         private void OnAuthenticateRequest(object sender, EventArgs eventArgs)
         {
             if (HttpContext.Current.User!=null) { 
