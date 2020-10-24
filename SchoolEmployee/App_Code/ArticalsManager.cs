@@ -6,36 +6,16 @@ using System.Web;
 
 namespace SchoolWeb.App_Code
 {
-    public class TeacherManager
+    public class ArticalsManager
     {
-        internal static string GetTeacherName(int? teacherId)
+        internal static List<Article> GetAll()
         {
-            string name = "";
-            if (!teacherId.HasValue)
-                return name;
+            List<Article> articales = null;
             using (SchoolDBEntities db = new SchoolDBEntities())
             {
                 try
                 {
-                    Teacher teacher = db.Teacher.Where(x => x.ID == teacherId).FirstOrDefault();
-                    name = teacher.FirstName+" " +teacher.LastName;
-                }
-                catch (Exception e)
-                {
-                    String.Compare("", "");
-                }
-            }
-            return name;
-        }
-
-        internal static List<Teacher> GetTeachers()
-        {
-            List<Teacher> teachers = null;
-            using (SchoolDBEntities db = new SchoolDBEntities())
-            {
-                try
-                {
-                    teachers = db.Teacher
+                    articales = db.Article
                         .ToList();
 
                 }
@@ -44,7 +24,24 @@ namespace SchoolWeb.App_Code
                     e.ToString();
                 }
             }
-            return teachers;
+            return articales;
+        }
+        internal static Article GetById(int id)
+        {
+           Article articale = null;
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    articale = db.Article.Where(x=>x.ID==id).FirstOrDefault();
+
+                }
+                catch (Exception e)
+                {
+                    e.ToString();
+                }
+            }
+            return articale;
         }
     }
 }

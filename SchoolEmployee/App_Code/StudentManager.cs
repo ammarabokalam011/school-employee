@@ -115,5 +115,33 @@ namespace SchoolWeb.App_Code
                 return false;
             }
         }
+
+        internal static bool Edit(Guid id, string firstName, string secondName, string fatherName, string motherName, string userName, int discount, DateTime birthdate, int? classroomd, int gradeId)
+        {
+
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    Student student = db.Student.Where(x => x.ID == id).FirstOrDefault();
+                    student.FirstName = firstName;
+                    student.LastName = secondName;
+                    student.FatherName = fatherName;
+                    student.MotherName = motherName;
+                    student.Username = userName;
+                    student.BirthDate = birthdate;
+                    student.Discount = discount;
+                    student.ClassRoomId = classroomd;
+                    student.GradeId = gradeId;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    String.Compare("", "");
+                }
+                return false;
+            }
+        }
     }
 }

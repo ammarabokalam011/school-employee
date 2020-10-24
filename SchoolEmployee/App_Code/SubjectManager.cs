@@ -47,7 +47,17 @@ namespace SchoolWeb.App_Code
             }
         }
 
-        internal static List<int> GetTeacherSubjectsIds(int id)
+        internal static string GetGradeName(int gradeId)
+        {
+            string s = "";
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                return db.Grade.Where(x => gradeId == x.ID).FirstOrDefault().Name;
+            }
+            return s;
+        }
+
+            internal static List<int> GetTeacherSubjectsIds(int id)
         {
             List<Subject> subjects = new List<Subject>();
             Teacher teacher;

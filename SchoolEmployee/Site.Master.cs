@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace SchoolWeb
@@ -16,7 +17,18 @@ namespace SchoolWeb
         {
             if (Session["StudentId"] != null)
             {
-                loginUl.InnerHtml = "<a class='hover-btn-new log orange' onClick='redirect()'  ><span>" + StudentManager.GetStudent(Guid.Parse(Session["StudentId"].ToString())).Username + "</span> </a>";
+                
+                LinkButton link = new LinkButton();
+                link.CssClass = "hover-btn-new log orange";
+                link.PostBackUrl = "#"; 
+                HtmlGenericControl span = new HtmlGenericControl("span");
+                span.InnerText= "Log out from "  + StudentManager.GetStudent(Guid.Parse(Session["StudentId"].ToString())).Username ;
+                link.Controls.Add( span);
+                link.Click += new EventHandler((x,y)=> {
+                    Session["StudentId"] =null;
+                    Page.Response.Redirect(Page.Request.Url.ToString(), true);
+                });
+                loginUl.Controls.Add(link);
             }
             else
             {
@@ -40,17 +52,6 @@ namespace SchoolWeb
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('UserName or password wrong')", true);
             }
         }
-
-        protected override void OnInit(EventArgs e)
-        {
-            if (Session["StudentId"] != null)
-            {
-                loginUl.InnerHtml = "<a class='hover-btn-new log orange' onClick='redirect()'  ><span>" + StudentManager.GetStudent(Guid.Parse(Session["StudentId"].ToString())).Username + "</span> </a>";
-            }
-            else
-            {
-                loginUl.InnerHtml = "<a class='hover-btn-new log orange' href='#' data-toggle='modal' data-target='#login'><span>Login</span> </a> ";
-            }
-        }
+        
     }
 }

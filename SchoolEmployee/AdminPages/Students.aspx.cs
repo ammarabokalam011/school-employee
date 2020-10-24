@@ -61,14 +61,33 @@ namespace SchoolWeb.AdminPages
             DateTime birthdate = datetxtBirthDate.Date;
             int? classroomd = (int?)txtClassRoomId.Value;
             int gradeId = (int)txtGradeId.Value;
-            if (StudentManager.Add(firstName, secondName, fatherName, motherName, userName, discount, birthdate, classroomd, gradeId))
+            if (Session["StudentId"] != null)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Succses')", true);
-                Response.Redirect("/AdminPages/Students");
+                if (Session["StudentId"] != "")
+                {
+                    Guid Id = Guid.Parse(Session["StudentId"].ToString());
+                    if (StudentManager.Edit(Id,firstName, secondName, fatherName, motherName, userName, discount, birthdate, classroomd, gradeId))
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Succses')", true);
+                        Response.Redirect("/AdminPages/Students");
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Failed')", true);
+                    }
+                }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Failed')", true);
+                if (StudentManager.Add(firstName, secondName, fatherName, motherName, userName, discount, birthdate, classroomd, gradeId))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Succses')", true);
+                    Response.Redirect("/AdminPages/Students");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Failed')", true);
+                }
             }
         }
 
