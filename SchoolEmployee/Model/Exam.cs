@@ -27,6 +27,7 @@ namespace SchoolWeb.Model
         public int ClassRoomId { get; set; }
         public string Name { get; set; }
         public Nullable<int> PeriodId { get; set; }
+        public int Year { get; set; }
     
         public virtual ClassRoom ClassRoom { get; set; }
         public virtual Period Period { get; set; }

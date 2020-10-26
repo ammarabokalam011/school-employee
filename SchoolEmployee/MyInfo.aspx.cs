@@ -28,6 +28,7 @@ namespace SchoolWeb
                 grade.Value = SubjectManager.GetGradeName( s.GradeId);
                 if(s.ClassRoomId.HasValue)
                     classroom.Value = ClassRoomManager.GetClassRoomName(s.ClassRoomId.Value);
+                RestPayment.Value = PaymentsManager.GetTheRestOfTheStudentPayment(s.ID).ToString();
             }
             else
             {

@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <dx:ASPxTextBox ID="txtTeacherId" runat="server" Visible="false"></dx:ASPxTextBox>
     <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
         <asp:View  ID="MainView" runat="server"  EnableViewState="true" ViewStateMode="Enabled">
             <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID">
@@ -60,7 +61,7 @@
                 ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>'
                 SelectCommand="SELECT Grade.Name AS GradeName, Subject.Name AS SubjectName, Subject.ID AS SubjectId, (SELECT (CASE WHEN COUNT(TeacherId) = 0 THEN 0 ELSE 1 END) AS Expr1 FROM TeacherSubject WHERE (TeacherId = @TeacherId) AND (SubjectId = Subject.ID)) AS IsOn FROM Subject INNER JOIN Grade ON Subject.GradeId = Grade.ID">
                 <SelectParameters>
-                    <asp:SessionParameter SessionField="TeacherId" DefaultValue="-1" Name="TeacherId"></asp:SessionParameter>
+                    <asp:ControlParameter ControlID="txtTeacherId" PropertyName="Text" DefaultValue="-1" Name="TeacherId"></asp:ControlParameter>
                 </SelectParameters>
             </asp:SqlDataSource>
         </asp:View>

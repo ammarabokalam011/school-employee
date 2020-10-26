@@ -63,8 +63,7 @@ namespace SchoolWeb.AdminPages
             int gradeId = (int)txtGradeId.Value;
             if (Session["StudentId"] != null)
             {
-                if (Session["StudentId"] != "")
-                {
+                
                     Guid Id = Guid.Parse(Session["StudentId"].ToString());
                     if (StudentManager.Edit(Id,firstName, secondName, fatherName, motherName, userName, discount, birthdate, classroomd, gradeId))
                     {
@@ -75,7 +74,7 @@ namespace SchoolWeb.AdminPages
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('Failed')", true);
                     }
-                }
+                
             }
             else
             {

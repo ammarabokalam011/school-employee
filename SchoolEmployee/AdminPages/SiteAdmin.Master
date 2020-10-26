@@ -74,15 +74,30 @@
                         </div>
                     </div>
                 </li>
+                <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="News.aspx">
-                        <i class="fas fa-fw fa-newspaper"></i>
-                        <span>News</span></a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages5" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw  fa-pen"></i>
+                        <span>Exams</span>
+                    </a>
+                    <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="Exams.aspx">Exam</a>
+                            <a class="collapse-item" href="ExamResult.aspx">Result</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Articals.aspx">
-                        <i class="fas fa-fw fa-newspaper"></i>
-                        <span>Articals</span></a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw  fa-newspaper"></i>
+                        <span>Exams</span>
+                    </a>
+                    <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="Articals.aspx">Articals</a>
+                            <a class="collapse-item" href="News.aspx">News</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Registeration.aspx">

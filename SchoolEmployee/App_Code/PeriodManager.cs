@@ -26,5 +26,24 @@ namespace SchoolWeb.App_Code
             }
             return periods;
         }
+
+        internal static string GetPeriodAsString(int periodId)
+        {
+            
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    Period period = db.Period.Where(x => x.ID == periodId).FirstOrDefault();
+                    return period.StartTime+" - " +period.EndTime;
+
+                }
+                catch (Exception e)
+                {
+                    e.ToString();
+                }
+            }
+            return "";
+        }
     }
 }

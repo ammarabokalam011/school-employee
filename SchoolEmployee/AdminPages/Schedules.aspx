@@ -5,6 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
+    <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Back" OnClick="ASPxButton1_Click"></dx:ASPxButton>
+    <br /><br />
+
     <dx:ASPxLabel Theme="Material" runat="server" ID="ClassRoomName" Font-Bold="true" />
     <br />
     <br />

@@ -30,7 +30,7 @@ namespace SchoolWeb.App_Code
 
         internal static List<Teacher> GetTeachers()
         {
-            List<Teacher> teachers = null;
+            List<Teacher> teachers = new List<Teacher>();
             using (SchoolDBEntities db = new SchoolDBEntities())
             {
                 try

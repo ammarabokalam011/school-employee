@@ -14,11 +14,22 @@ namespace SchoolWeb.App_Code
             double result = 0;
             using (SchoolDBEntities db = new SchoolDBEntities())
             {
-                Payment payment= db.Payment.Where(x => id == x.ID).FirstOrDefault();
-                result = db.Payment.AsEnumerable().Where(x =>  DateTime.Compare(x.PayDate , payment.PayDate) < 0  && x.StudentId==payment.StudentId)
+                Payment payment = db.Payment.Where(x => id == x.ID).FirstOrDefault();
+                result = db.Payment.AsEnumerable().Where(x => DateTime.Compare(x.PayDate, payment.PayDate) < 0 && x.StudentId == payment.StudentId)
                     .Select(x => x.Amount).DefaultIfEmpty(0).Sum();
                 result += payment.Amount;
+
+            }
+            return result;
+        }
+        public static int GetTheRestOfTheStudentPayment(Guid id)
+        {
+            int result = 0;
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                result = db.Payment.Where(x => id == x.StudentId).ToList().Select(x => x.Amount).DefaultIfEmpty(0).Sum();
                 
+
             }
             return result;
         }

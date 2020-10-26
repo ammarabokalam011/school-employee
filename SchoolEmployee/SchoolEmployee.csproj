@@ -239,6 +239,8 @@
     <Content Include="AdminPages\ChangePassword.aspx" />
     <Content Include="AdminPages\ClassRooms.aspx" />
     <Content Include="AdminPages\Employees.aspx" />
+    <Content Include="AdminPages\ExamResult.aspx" />
+    <Content Include="AdminPages\Exams.aspx" />
     <Content Include="AdminPages\Fees.aspx" />
     <Content Include="AdminPages\News.aspx" />
     <Content Include="AdminPages\Payments.aspx" />
@@ -256,17 +258,121 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\animate.min.css" />
+    <Content Include="css\bootstrap-touch-slider.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\colors.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\flaticon.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\prettyPhoto.css" />
+    <Content Include="css\pr_loading.css" />
+    <Content Include="css\responsive.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="css\timeline.min.css" />
+    <Content Include="css\versions.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\Flaticon.svg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="images\about_02.jpg" />
+    <Content Include="images\about_03.jpg" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\apple-touch-icon.png" />
+    <Content Include="images\arrow-left.svg" />
+    <Content Include="images\arrow-right.svg" />
+    <Content Include="images\author.jpg" />
+    <Content Include="images\avatar-01.jpg" />
+    <Content Include="images\avatar-02.jpg" />
+    <Content Include="images\avatar-03.jpg" />
+    <Content Include="images\banner.jpg" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\blog_1.jpg" />
+    <Content Include="images\blog_2.jpg" />
+    <Content Include="images\blog_3.jpg" />
+    <Content Include="images\blog_4.jpg" />
+    <Content Include="images\blog_5.jpg" />
+    <Content Include="images\blog_6.jpg" />
+    <Content Include="images\blog_single.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\img-01.jpg" />
+    <Content Include="images\img-02.jpg" />
+    <Content Include="images\img-03.jpg" />
+    <Content Include="images\img-04.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo_01.png" />
+    <Content Include="images\logo_02.png" />
+    <Content Include="images\logo_03.png" />
+    <Content Include="images\logo_04.png" />
+    <Content Include="images\logo_05.png" />
+    <Content Include="images\logo_06.png" />
+    <Content Include="images\parallax_04.jpg" />
+    <Content Include="images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\dark_square\contentPattern.png" />
+    <Content Include="images\prettyPhoto\dark_square\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="images\prettyPhoto\default\loader.gif" />
+    <Content Include="images\prettyPhoto\default\sprite.png" />
+    <Content Include="images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\light_rounded\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="images\prettyPhoto\light_square\default_thumbnail.gif" />
+    <Content Include="images\prettyPhoto\light_square\loader.gif" />
+    <Content Include="images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="images\search-icon.png" />
+    <Content Include="images\slider-01.jpg" />
+    <Content Include="images\slider-02.jpg" />
+    <Content Include="images\slider-03.jpg" />
+    <Content Include="images\team-01.png" />
+    <Content Include="images\team-02.png" />
+    <Content Include="images\team-03.png" />
+    <Content Include="images\team-04.png" />
+    <Content Include="images\testi_01.png" />
+    <Content Include="images\testi_02.png" />
+    <Content Include="images\testi_03.png" />
+    <Content Include="images\world-map.png" />
     <Content Include="img\undraw_posting_photo.svg" />
+    <Content Include="js\01-custom-places-example.js" />
+    <Content Include="js\all.js" />
+    <Content Include="js\custom.js" />
     <Content Include="js\demo\chart-area-demo.js" />
     <Content Include="js\demo\chart-bar-demo.js" />
     <Content Include="js\demo\chart-pie-demo.js" />
     <Content Include="js\demo\datatables-demo.js" />
+    <Content Include="js\mapsed.js" />
+    <Content Include="js\modernizer.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="js\timeline.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="AdminPages\Home.aspx" />
     <Content Include="Contact.aspx" />
@@ -436,6 +542,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SingleArtical.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="style.css" />
     <Content Include="Teachers.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -2123,6 +2230,20 @@
     <Compile Include="AdminPages\ClassRooms.aspx.designer.cs">
       <DependentUpon>ClassRooms.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\ExamResult.aspx.cs">
+      <DependentUpon>ExamResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\ExamResult.aspx.designer.cs">
+      <DependentUpon>ExamResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Exams.aspx.cs">
+      <DependentUpon>Exams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Exams.aspx.designer.cs">
+      <DependentUpon>Exams.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\Fees.aspx.cs">
       <DependentUpon>Fees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2203,7 +2324,9 @@
     <Compile Include="AdminPages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\ExamManager.cs" />
     <Compile Include="App_Code\Helper.cs" />
+    <Compile Include="App_Code\NewsManager.cs" />
     <Compile Include="App_Code\PaymentsManager.cs" />
     <Compile Include="App_Code\PeriodManager.cs" />
     <Compile Include="App_Code\PermissionManager.cs" />

@@ -59,6 +59,25 @@ namespace SchoolWeb.App_Code
             return student;
         }
 
+        internal static string GetStudentMark(Guid studentId,int examId)
+        {
+            Student student = new Student();
+            using (SchoolDBEntities dBEntities = new SchoolDBEntities())
+            {
+                try
+                {
+
+                    student = dBEntities.Student.Where(x => x.ID == studentId).FirstOrDefault();
+                    return student.StudentExam.Where(x => x.ExamId == examId).FirstOrDefault().Mark+"";
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            return "not out yet";
+        }
+
         internal static bool RestPassword(Guid guid)
         {
             using (SchoolDBEntities db = new SchoolDBEntities())

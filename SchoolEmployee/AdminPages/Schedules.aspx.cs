@@ -142,6 +142,10 @@ namespace SchoolWeb.AdminPages
             int ClassId= int.Parse(Request.QueryString["ClassRoomId"]);
             ScheduleManager.EditSchedule(PeriodId, DayId, SubjectId, TeacherId, ClassId);
         }
-        
+
+        protected void ASPxButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/AdminPages/ClassRooms.aspx");
+        }
     }
 }
