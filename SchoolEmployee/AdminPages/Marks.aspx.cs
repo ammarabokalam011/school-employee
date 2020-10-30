@@ -13,7 +13,6 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Guid studentId = Guid.Parse(Request.QueryString["StudentId"]);
             Student s = StudentManager.GetStudent(studentId);
             ExamManager.GetExams(s.GradeId).ForEach(x =>

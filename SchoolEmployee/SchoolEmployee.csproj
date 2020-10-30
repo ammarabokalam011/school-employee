@@ -238,10 +238,12 @@
     <Content Include="AdminPages\Articals.aspx" />
     <Content Include="AdminPages\ChangePassword.aspx" />
     <Content Include="AdminPages\ClassRooms.aspx" />
+    <Content Include="AdminPages\ClassStudent.aspx" />
     <Content Include="AdminPages\Employees.aspx" />
     <Content Include="AdminPages\ExamResult.aspx" />
     <Content Include="AdminPages\Exams.aspx" />
     <Content Include="AdminPages\Fees.aspx" />
+    <Content Include="AdminPages\Marks.aspx" />
     <Content Include="AdminPages\News.aspx" />
     <Content Include="AdminPages\Payments.aspx" />
     <Content Include="AdminPages\Periods.aspx" />
@@ -2230,6 +2232,13 @@
     <Compile Include="AdminPages\ClassRooms.aspx.designer.cs">
       <DependentUpon>ClassRooms.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\ClassStudent.aspx.cs">
+      <DependentUpon>ClassStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\ClassStudent.aspx.designer.cs">
+      <DependentUpon>ClassStudent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPages\ExamResult.aspx.cs">
       <DependentUpon>ExamResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2250,6 +2259,13 @@
     </Compile>
     <Compile Include="AdminPages\Fees.aspx.designer.cs">
       <DependentUpon>Fees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\Marks.aspx.cs">
+      <DependentUpon>Marks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPages\Marks.aspx.designer.cs">
+      <DependentUpon>Marks.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPages\News.aspx.cs">
       <DependentUpon>News.aspx</DependentUpon>

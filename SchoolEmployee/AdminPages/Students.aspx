@@ -60,7 +60,14 @@
                                     <dx:LayoutItemNestedControlContainer runat="server">
                                         <dx:ASPxTextBox runat="server" ID="txtFirstName">
                                             <ValidationSettings Display="Dynamic" RequiredField-IsRequired="true" ErrorDisplayMode="Text" SetFocusOnError="true" ErrorTextPosition="Bottom" ErrorFrameStyle-Wrap="true" />
+
                                         </dx:ASPxTextBox>
+
+                                        <asp:RegularExpressionValidator
+                                            ID="RegularExpressionValidator1"
+                                            runat="server"
+                                             ErrorMessage="only characters allowed" ControlToValidate="txtFirstName" ValidationExpression="^[A-Za-zا-ي]*$"></asp:RegularExpressionValidator>
+
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
@@ -70,6 +77,8 @@
                                         <dx:ASPxTextBox runat="server" ID="txtSecondName">
                                             <ValidationSettings Display="Dynamic" RequiredField-IsRequired="true" ErrorDisplayMode="Text" SetFocusOnError="true" ErrorTextPosition="Bottom" ErrorFrameStyle-Wrap="true" />
                                         </dx:ASPxTextBox>
+                                        
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="only characters allowed" ControlToValidate="txtSecondName" ValidationExpression="^[A-Za-zا-ي]*$"></asp:RegularExpressionValidator>
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
@@ -79,6 +88,11 @@
                                         <dx:ASPxTextBox runat="server" ID="txtFatherName">
                                             <ValidationSettings Display="Dynamic" RequiredField-IsRequired="true" ErrorDisplayMode="Text" SetFocusOnError="true" ErrorTextPosition="Bottom" ErrorFrameStyle-Wrap="true" />
                                         </dx:ASPxTextBox>
+                                        
+                                        <asp:RegularExpressionValidator
+                                            ID="RegularExpressionValidator3"
+                                            runat="server"
+                                             ErrorMessage="only characters allowed" ControlToValidate="txtFatherName" ValidationExpression="^[A-Za-zا-ي]*$"></asp:RegularExpressionValidator>
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
@@ -88,6 +102,11 @@
                                         <dx:ASPxTextBox runat="server" ID="txtMotherName">
                                             <ValidationSettings Display="Dynamic" RequiredField-IsRequired="true" ErrorDisplayMode="Text" SetFocusOnError="true" ErrorTextPosition="Bottom" ErrorFrameStyle-Wrap="true" />
                                         </dx:ASPxTextBox>
+                                        <asp:RegularExpressionValidator
+                                            ID="RegularExpressionValidator4"
+                                            runat="server"
+                                             ErrorMessage="only characters allowed" ControlToValidate="txtMotherName" ValidationExpression="^[A-Za-zا-ي]*$"></asp:RegularExpressionValidator>
+
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
@@ -95,7 +114,19 @@
                             <dx:LayoutItem Caption="BirthDate" ColSpan="1" FieldName="BirthDate">
                                 <LayoutItemNestedControlCollection>
                                     <dx:LayoutItemNestedControlContainer runat="server">
-                                        <dx:ASPxDateEdit runat="server" ID="datetxtBirthDate">
+                                        <script>
+                                            function OnBirthDateValidation(s, e) {
+                                                var birthDateEdit = ASPxClientDateEdit.Cast(datetxtBirthDate);  
+                                                var birthDate = birthDateEdit.GetValue();
+                                                var d = new Date();
+                                                e.isValid = d.getFullYear() > birthDate.getFullYear()+7;
+                                            }
+                                        </script>
+                                        <dx:ASPxDateEdit runat="server" ID="datetxtBirthDate" ClientInstanceName="datetxtBirthDate" >
+                                            <ValidationSettings EnableCustomValidation="true" ErrorText="Birthdate must be less than 7 year">  
+                                                <RequiredField IsRequired="True" />  
+                                            </ValidationSettings>  
+                                            <ClientSideEvents Validation="OnBirthDateValidation" />  
                                         </dx:ASPxDateEdit>
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
@@ -107,7 +138,17 @@
                             <dx:LayoutItem FieldName="Discount" ColSpan="1">
                                 <LayoutItemNestedControlCollection>
                                     <dx:LayoutItemNestedControlContainer runat="server">
-                                        <dx:ASPxTextBox runat="server" ID="txtDiscount"></dx:ASPxTextBox>
+                                        <script>  
+                                            function onValidation(s, e) {
+                                                e.isValid = (e.value >= 0 && e.value<=100);  
+                                            }  
+                                        </script>  
+                                        <dx:ASPxTextBox runat="server" ID="txtDiscount">
+                                                <ValidationSettings Display="None" SetFocusOnError="True" CausesValidation="True" ErrorText="Must be greater or equal to zero and less or equal than handrad">  
+                                                    <RequiredField ErrorText="Informe: Quantidade." IsRequired="True" />  
+                                                </ValidationSettings>  
+                                                <ClientSideEvents Validation="onValidation" />  
+                                        </dx:ASPxTextBox>
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
