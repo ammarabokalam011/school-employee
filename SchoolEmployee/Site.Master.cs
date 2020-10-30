@@ -34,16 +34,15 @@ namespace SchoolWeb
             {
                 loginUl.InnerHtml = "<a class='hover-btn-new log orange' href='#' data-toggle='modal' data-target='#login'><span>Login</span> </a> ";
             }
-            
+
+            string allNews = "";
             NewsManager.GetAllNewsAsString().ForEach(x=>{
 
 
-                 HtmlGenericControl div = new HtmlGenericControl("div");
-                div.Attributes.Add("class","slide");
                 
-                div.InnerText = x.Detail;
-                //slider.Controls.Add(div);
+                allNews += x.Detail + ". &nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp";
             });
+            newBar.InnerHtml = allNews;
         }
         
         protected void myBtn_Click(object sender, EventArgs e)

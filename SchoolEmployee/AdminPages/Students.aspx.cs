@@ -45,7 +45,7 @@ namespace SchoolWeb.AdminPages
 
         protected void AddStudnetBtn_Click(object sender, EventArgs e)
         {
-            Session["StudentId"] = "";
+            Session["StudentId"] = null;
             MultiView1.ActiveViewIndex = 1;
         }
 
@@ -92,13 +92,30 @@ namespace SchoolWeb.AdminPages
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Session["StudentId"] = "";
+            Session["StudentId"] = null;
             MultiView1.ActiveViewIndex = 0;
         }
         
         protected void txtGradeId_ValueChanged(object sender, EventArgs e)
         {
             txtClassRoomId.DataBind();
+        }
+
+        protected void ASPxGridViewStudent_CustomUnboundColumnData(object sender, ASPxGridViewColumnDataEventArgs e)
+        {
+            if (e.Column.FieldName == "AvarageMark")
+            {
+                Guid id = Guid.Parse(e.GetListSourceFieldValue("ID").ToString());
+                e.Value = ExamManager.GetTheEvarageOfTheStudent(id);
+            }
+        }
+
+        protected void MarksBtn_Click(object sender, EventArgs e)
+        {
+            ASPxButton btn = (ASPxButton)sender;
+            GridViewDataItemTemplateContainer container = (GridViewDataItemTemplateContainer)btn.NamingContainer;
+            Guid Id = Guid.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
+            Response.Redirect(string.Format("~/AdminPages/Marks.aspx?StudentId={0}", Id));
         }
     }
 }

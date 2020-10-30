@@ -24,13 +24,14 @@ namespace SchoolWeb.AdminPages
             {
                 classRoomId= int.Parse(Request.QueryString["ClassRoomId"]);
                 edit = bool.Parse(Request.QueryString["Edit"]);
-                Session["GradeId"] = 1;
+                
             }
             catch (Exception ex)
             {
                 Response.Redirect("~/AdminPages/home");
             }
             ClassRoomName.Text = "ClassRoom Name: "+ClassRoomManager.GetClassRoomName(classRoomId);
+            Session["GradeId"] = ClassRoomManager.GetClassRoom(classRoomId).GradeID;
             List<Schedule> schedules= ScheduleManager.GetSchedule(classRoomId);
             Dictionary<int, Dictionary<int,  Schedule>> schTable = schedules.ToList().GroupBy(x => x.Day)
                 .ToDictionary(x => x.Key,
@@ -72,17 +73,24 @@ namespace SchoolWeb.AdminPages
                         comboBox.TextField = "SubjectName";
                         comboBox.DataSource = SqlDataSource1;
                         comboBox.DataBind();
+                        comboBox.NullText = "empty";
+                        comboBox.Items.Insert(0, new ListEditItem(" ", null));
                         comboBox.SelectedIndexChanged +=
                                  new EventHandler((s, k) => ASPxComboBox1_SelectedIndexChanged(s, k, x.ID,dayId));
-                        
                         comboBox.AutoPostBack = true;
                         comboBox.ClientEnabled = true;
+                        comboBox.AllowNull = true;
                         if (schTable.ContainsKey(dayId))
                         {
                             if (schTable[dayId].ContainsKey(x.ID))
                             {
-                                if(schTable[dayId][x.ID] != null)
-                                    comboBox.SelectedIndex = comboBox.Items.Where(y=> int.Parse(y.Value.ToString()) == schTable[dayId][x.ID].SubjectId).First().Index;
+                                if (schTable[dayId][x.ID] != null) {
+                                    ListEditItem item= comboBox.Items.Where(y => (y.Value != null ? (int.Parse(y.Value.ToString())) : -1) == schTable[dayId][x.ID].SubjectId).FirstOrDefault();
+                                    if(item!=null)
+                                        comboBox.SelectedIndex = item.Index;
+                                    }
+                                else
+                                    comboBox.SelectedIndex = 0;
                             }
                         }
                         cell.Controls.Add(comboBox);
@@ -133,18 +141,36 @@ namespace SchoolWeb.AdminPages
 
         protected void ASPxComboBox1_SelectedIndexChanged(object sender, EventArgs e,int PeriodId,int DayId)
         {
-            int SubjectId = int.Parse((sender as ASPxComboBox).Value.ToString());
-            Nullable<int> TeacherId = null;
-            if(int.TryParse((sender as ASPxComboBox).SelectedItem.GetFieldValue("TeacherId").ToString(), out int t))
+            int ClassId = int.Parse(Request.QueryString["ClassRoomId"]);
+            if ((sender as ASPxComboBox).Value != null)
             {
-                TeacherId = t;
+                int SubjectId = int.Parse((sender as ASPxComboBox).Value.ToString());
+                Nullable<int> TeacherId = null;
+                if (int.TryParse((sender as ASPxComboBox).SelectedItem.GetFieldValue("TeacherId").ToString(), out int t))
+                {
+                    TeacherId = t;
+                }
+                
+                if (ScheduleManager.EditSchedule(PeriodId, DayId, SubjectId, TeacherId, ClassId))
+                {
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Alert", "alert('failed the teacher has other thing in the same time');" + "location.href = '" + Request.RawUrl + "';", true);
+                }
             }
-            int ClassId= int.Parse(Request.QueryString["ClassRoomId"]);
-            ScheduleManager.EditSchedule(PeriodId, DayId, SubjectId, TeacherId, ClassId);
+            else
+            {
+                ScheduleManager.RemoveSchedule(PeriodId, DayId, ClassId);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Alert","location.href = '" + Request.RawUrl + "';", true);
+            }
+
         }
 
         protected void ASPxButton1_Click(object sender, EventArgs e)
         {
+
             Response.Redirect("/AdminPages/ClassRooms.aspx");
         }
     }

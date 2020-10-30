@@ -26,7 +26,7 @@ namespace SchoolWeb.App_Code
             return schedules;
         }
 
-        internal static void EditSchedule(int periodId, int dayId, int subjectId, int? teacherId, int classId)
+        internal static bool EditSchedule(int periodId, int dayId, int subjectId, int? teacherId, int classId)
         {
             using (SchoolDBEntities db = new SchoolDBEntities())
             {
@@ -37,7 +37,18 @@ namespace SchoolWeb.App_Code
                         .FirstOrDefault();
                     if (schedule != null)
                     {
+                        if (teacherId.HasValue && db.Schedule
+                            .Where(x => dayId == x.Day && periodId == x.PeriodId && teacherId == x.TeacherId)
+                            .Count() > 1)
+                            return false;
                         db.Schedule.Remove(schedule);
+                    }
+                    else
+                    {
+                        if (teacherId.HasValue && db.Schedule
+                            .Where(x => dayId == x.Day && periodId == x.PeriodId && teacherId == x.TeacherId)
+                            .Count() > 0)
+                            return false;
                     }
 
                     Schedule s = new Schedule();
@@ -49,12 +60,36 @@ namespace SchoolWeb.App_Code
                     s.Day = dayId;
                     db.Schedule.Add(s);
                     db.SaveChanges();
+                    return true;
                 }
                 catch (Exception e)
                 {
                     e.ToString();
                 }
+
             }
+            return false;
+        }
+
+        internal static void RemoveSchedule(int periodId, int dayId, int classId)
+        {
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    Schedule schedule = db.Schedule
+                        .Where(x => x.ClassRoomId == classId && dayId == x.Day && periodId == x.PeriodId)
+                        .FirstOrDefault();
+                    db.Schedule.Remove(schedule);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    e.ToString();
+                }
+
+            }
+
         }
     }
 }

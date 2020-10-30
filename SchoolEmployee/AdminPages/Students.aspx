@@ -5,28 +5,28 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-        <asp:View ID="MainView" runat="server"  EnableViewState="true" ViewStateMode="Enabled">
+    <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0" >
+        <asp:View ID="MainView" runat="server"  EnableViewState="true" ViewStateMode="Enabled" >
             <br />
             <dx:ASPxButton runat="server" Text="Add Student" ID="AddStudnetBtn" AutoPostBack="false" OnClick="AddStudnetBtn_Click" Theme="Material" />
             <br />
             <br />
-            <dx:ASPxGridView ID="ASPxGridViewStudent" runat="server" Width="100%" Theme="Material" AutoGenerateColumns="False" DataSourceID="SqlDataSourceStudnet" EnableTheming="True" KeyFieldName="ID">
+            <dx:ASPxGridView ID="ASPxGridViewStudent" runat="server" Width="100%" Theme="Material" AutoGenerateColumns="False"  OnCustomUnboundColumnData="ASPxGridViewStudent_CustomUnboundColumnData" DataSourceID="SqlDataSourceStudnet" EnableTheming="True" KeyFieldName="ID">
                 <Settings HorizontalScrollBarMode="Auto" ShowFilterRow="True" />
                 <Columns>
-                    <dx:GridViewDataColumn VisibleIndex="1" Width="120">
+                    <dx:GridViewDataColumn VisibleIndex="0" Width="120">
                         <EditFormSettings Visible="False" />
                         <DataItemTemplate>
                             <dx:ASPxButton runat="server" Text="Edit" ID="EditStudentBtn" AutoPostBack="false" OnClick="EditStudentBtn_Click" Theme="Material" />
                         </DataItemTemplate>
                     </dx:GridViewDataColumn>
-                    <dx:GridViewDataColumn VisibleIndex="2" Width="160">
+                    <dx:GridViewDataColumn VisibleIndex="1" Width="160">
                         <EditFormSettings Visible="False" />
                         <DataItemTemplate>
                             <dx:ASPxButton runat="server" Text="Rest Password" ID="RestPasswordBtn" AutoPostBack="false" OnClick="RestPasswordBtn_Click" Theme="Material" />
                         </DataItemTemplate>
                     </dx:GridViewDataColumn>
-                    <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="3" Visible="False"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="2" Visible="False"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="FirstName" Caption="First Name" VisibleIndex="4"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="LastName" Caption="Last Name" VisibleIndex="5"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="MotherName" Caption="Mother Name" VisibleIndex="7"></dx:GridViewDataTextColumn>
@@ -34,8 +34,15 @@
                     <dx:GridViewDataDateColumn FieldName="BirthDate" Caption="BirthDate" VisibleIndex="8"></dx:GridViewDataDateColumn>
                     <dx:GridViewDataTextColumn FieldName="Discount" Caption="Discount" VisibleIndex="13"></dx:GridViewDataTextColumn>
                     <dx:GridViewDataTextColumn FieldName="Username" Caption="UserName" VisibleIndex="3"></dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="ClassRoomName"  Caption="Classroom" VisibleIndex="10"></dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="GradeName" ReadOnly="True" Caption="Grade" VisibleIndex="9"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="ClassRoomName" Caption="Classroom" VisibleIndex="11"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn FieldName="GradeName" ReadOnly="True" Caption="Grade" VisibleIndex="10"></dx:GridViewDataTextColumn>
+                    <dx:GridViewDataColumn FieldName="AvarageMark" EditFormSettings-Visible="False" UnboundType="String" VisibleIndex="9" />
+                    <dx:GridViewDataColumn VisibleIndex="14" Width="160">
+                        <EditFormSettings Visible="False" />
+                        <DataItemTemplate>
+                            <dx:ASPxButton runat="server" Text="Marks" ID="MarksBtn" AutoPostBack="false" OnClick="MarksBtn_Click" Theme="Material" />
+                        </DataItemTemplate>
+                    </dx:GridViewDataColumn>
                 </Columns>
                 
             </dx:ASPxGridView>

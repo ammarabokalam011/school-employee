@@ -25,5 +25,22 @@ namespace SchoolWeb.App_Code
             }
             return name;
         }
+
+        internal static ClassRoom GetClassRoom(int classRoomId)
+        {
+            ClassRoom classRoom = null;
+            using (SchoolDBEntities db = new SchoolDBEntities())
+            {
+                try
+                {
+                    classRoom = db.ClassRoom.Where(x => x.ID == classRoomId).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            return classRoom;
+        }
     }
 }

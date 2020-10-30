@@ -31,5 +31,13 @@ namespace SchoolWeb.AdminPages
             int Id = int.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
             Response.Redirect(string.Format("~/AdminPages/Schedules.aspx?ClassRoomId={0}&Edit=false", Id));
         }
+
+        protected void ShowStudentBtn_Click(object sender, EventArgs e)
+        {
+            ASPxButton btn = (ASPxButton)sender;
+            GridViewDataItemTemplateContainer container = (GridViewDataItemTemplateContainer)btn.NamingContainer;
+            int Id = int.Parse(container.Grid.GetDataRow(container.VisibleIndex).ItemArray[0].ToString());
+            Response.Redirect(string.Format("~/AdminPages/ClassStudent.aspx?ClassRoomId={0}", Id));
+        }
     }
 }

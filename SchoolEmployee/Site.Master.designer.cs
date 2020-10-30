@@ -40,31 +40,13 @@ namespace SchoolWeb {
         protected global::System.Web.UI.WebControls.Button myBtn;
         
         /// <summary>
-        /// babrakingnews control.
+        /// newBar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl babrakingnews;
-        
-        /// <summary>
-        /// lblImportantNews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImportantNews;
-        
-        /// <summary>
-        /// babrakingnewsbody control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl babrakingnewsbody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newBar;
         
         /// <summary>
         /// loginUl control.

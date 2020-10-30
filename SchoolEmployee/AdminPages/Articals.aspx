@@ -122,7 +122,8 @@
         </Templates>
         <Columns>
             <dx:GridViewCommandColumn VisibleIndex="0" ShowNewButtonInHeader="true" ShowEditButton="True" />
-            <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="1">
+            <dx:GridViewCommandColumn VisibleIndex="1"  ShowDeleteButton="True" />
+            <dx:GridViewDataTextColumn FieldName="ID" Visible="false"  ReadOnly="True" VisibleIndex="1">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Title" VisibleIndex="2">

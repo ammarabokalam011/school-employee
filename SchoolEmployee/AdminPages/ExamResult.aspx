@@ -15,8 +15,8 @@
                     </Columns>
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn FieldName="StudentId" Caption="Student" VisibleIndex="1">
-                <PropertiesComboBox TextField="StudentText" ValueField="StudentId" ValueType="System.Guid" DataSourceID="SqlDataSource3">
+            <dx:GridViewDataComboBoxColumn  FieldName="StudentId" Caption="Student" VisibleIndex="1">
+                <PropertiesComboBox TextField="StudentText" ValueField="StudentId" ValueType="System.Guid" DataSourceID="SqlDataSource3" >
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn FieldName="Mark" VisibleIndex="2"></dx:GridViewDataTextColumn>

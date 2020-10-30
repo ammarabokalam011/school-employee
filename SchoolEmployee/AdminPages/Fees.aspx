@@ -12,7 +12,7 @@
                 <EditFormSettings Visible="False"></EditFormSettings>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Amount" VisibleIndex="2"></dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn FieldName="WarrningDate" VisibleIndex="3"></dx:GridViewDataDateColumn>
+            <dx:GridViewDataDateColumn FieldName="WarrningDate" Caption="Start Date" VisibleIndex="3"></dx:GridViewDataDateColumn>
             <dx:GridViewDataDateColumn FieldName="LastDate" VisibleIndex="4"></dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn FieldName="Name" VisibleIndex="5"></dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="Year" VisibleIndex="6"></dx:GridViewDataTextColumn>

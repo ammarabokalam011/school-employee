@@ -13,7 +13,8 @@ namespace SchoolWeb.AdminPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!User.IsInRole("ManageArticle"))
+                Response.Redirect("~/AdminPages/");
         }
 
         protected void ASPxGridView1_RowInserting(object sender, DevExpress.Web.Data.ASPxDataInsertingEventArgs e)

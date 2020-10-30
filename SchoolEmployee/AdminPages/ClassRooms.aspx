@@ -29,6 +29,12 @@
                     <dx:ASPxButton runat="server" Text="Show Schedule" ID="ShowScheduleBtn" AutoPostBack="false" OnClick="ShowScheduleBtn_Click" Theme="Material" />
                 </DataItemTemplate>
             </dx:GridViewDataColumn>
+            <dx:GridViewDataColumn VisibleIndex="7">
+                <EditFormSettings Visible="False" />
+                <DataItemTemplate>
+                    <dx:ASPxButton runat="server" Text="Show Student" ID="ShowStudentBtn" AutoPostBack="false" OnClick="ShowStudentBtn_Click" Theme="Material" />
+                </DataItemTemplate>
+            </dx:GridViewDataColumn>
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' DeleteCommand="DELETE FROM [ClassRoom] WHERE [ID] = @ID" InsertCommand="INSERT INTO [ClassRoom] ([Name], [Location], [GradeID]) VALUES (@Name, @Location, @GradeID)" SelectCommand="SELECT * FROM [ClassRoom]" UpdateCommand="UPDATE [ClassRoom] SET [Name] = @Name, [Location] = @Location, [GradeID] = @GradeID WHERE [ID] = @ID">
