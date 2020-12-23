@@ -1,11 +1,7 @@
-﻿using SchoolWeb.App_Code;
+﻿using DevExpress.Web;
+using SchoolWeb.App_Code;
 using SchoolWeb.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SchoolWeb.AdminPages
 {
@@ -38,6 +34,12 @@ namespace SchoolWeb.AdminPages
             PaymentsManager.AddPayment(payment);
             e.Cancel = true;
             ASPxGridView1.CancelEdit();
+        }
+
+        protected void cmbFee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ASPxComboBox cmbFee = (ASPxComboBox)sender;
+            
         }
     }
 }

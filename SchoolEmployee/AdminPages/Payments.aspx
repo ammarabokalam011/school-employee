@@ -26,10 +26,27 @@
             <dx:GridViewDataComboBoxColumn FieldName="StudentId" Caption="Student" VisibleIndex="6">
                 <PropertiesComboBox TextField="Username" ValueField="StudentId" ValueType="System.Guid" DataSourceID="SqlDataSource2">
                 </PropertiesComboBox>
+                <EditItemTemplate>
+                    <dx:ASPxComboBox ID="cmbStudent" runat="server" DataSourceID="v_dsStudent" Value='<%#Bind("StudentId")%>'  
+                        TextField="Username" ValueField="StudentId" ValueType="System.Guid" >  
+                    </dx:ASPxComboBox>
+                    <asp:SqlDataSource ID="v_dsStudent" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' SelectCommand="SELECT Student.ID AS StudentId, Fee.ID,Username FROM Fee INNER JOIN Grade ON Fee.GradeId = Grade.ID INNER JOIN Student ON Grade.ID = Student.GradeId WHERE (Fee.ID = @FeeId)">
+                        <SelectParameters>
+                            <asp:Parameter Name="FeeId" DefaultValue="-1" Type="Int32" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>  
+                </EditItemTemplate>
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataComboBoxColumn FieldName="FeeId" Caption="Fee" VisibleIndex="7">
                 <PropertiesComboBox TextField="FeeName" ValueField="FeeId" ValueType="System.Int32" DataSourceID="SqlDataSource3">
                 </PropertiesComboBox>
+                <EditItemTemplate>
+                    <dx:ASPxComboBox ID="cmbFee" runat="server" DataSourceID="v_dsFee" Value='<%#Bind("FeeId")%>'  
+                        TextField="FeeName" ValueField="FeeId" ValueType="System.Int32" OnSelectedIndexChanged="cmbFee_SelectedIndexChanged">  
+                    </dx:ASPxComboBox>
+                    <asp:SqlDataSource ID="v_dsFee" runat="server" ConnectionString='<%$ ConnectionStrings:SchoolDBConnectionString %>' SelectCommand="SELECT ID FROM Fee">
+                    </asp:SqlDataSource>  
+                </EditItemTemplate>
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataColumn FieldName="Rest" EditFormSettings-Visible="False" UnboundType="String" />
         </Columns>
